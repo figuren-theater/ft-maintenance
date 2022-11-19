@@ -1,0 +1,72 @@
+{
+	"name": "figuren-theater/ft-maintenance",
+	"description": "Everything you need to maintain and maybe debug a running WordPress Multisite like figuren.theater",
+    "homepage": "https://websites.fuer.figuren.theater",
+    "type": "wordpress-muplugin",
+    "keywords": ["wordpress", "maintenance", "debug"],
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "figuren.theater",
+            "email": "info@figuren.theater"
+        },
+        {
+            "name": "Carsten Bach",
+            "email": "mail@carsten-bach.de",
+            "homepage": "https://carsten-bach.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@figuren.theater",
+        "issues": "https://github.com/figuren-theater/ft-maintenance/issues",
+        "source": "https://github.com/figuren-theater/ft-maintenance"
+    },
+	"autoload": {
+		"files": [
+			"inc/dashboard-widget/namespace.php",
+			"inc/query-monitor/namespace.php",
+			"inc/wp-crontrol/namespace.php",
+			"inc/wp-sync-db/namespace.php",
+			"inc/namespace.php"
+		],
+        "classmap": [
+            "inc/"
+        ]
+	},
+	"repositories": [
+		{
+            "type": "git",
+            "url": "https://github.com/figuren-theater/ft-options"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/hrsetyono/wp-sync-db"
+        },
+		{
+			"type": "composer",
+			"url" : "https://wpackagist.org"
+		}
+	],
+	"require": {
+        "php": ">=7.1",
+        "figuren-theater/ft-options": "^1",
+		"johnbillion/query-monitor": "^3.10",
+		"johnbillion/wp-crontrol": "^1.14",
+		"pixelstudio/wp-sync-db": "^1.7"
+	},
+    "extra": {
+        "altis": {
+            "install-overrides": [
+				"johnbillion/query-monitor",
+				"johnbillion/wp-crontrol",
+				"pixelstudio/wp-sync-db"
+            ]
+        }
+    },
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	}
+}
