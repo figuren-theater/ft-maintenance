@@ -17,12 +17,12 @@ use function Altis\register_module;
 function register() {
 
 	$default_settings = [
-		'enabled' => true, // needs to be set
+		'enabled'       => true, // needs to be set
 		'query-monitor' => WP_DEBUG,
-		'wp-crontrol' => WP_DEBUG,
-		'wp-sync-db' => [
-		],
+		'wp-crontrol'   => WP_DEBUG,
+		'wp-sync-db'    => [],
 	];
+
 	$options = [
 		'defaults' => $default_settings,
 	];
@@ -48,6 +48,7 @@ function bootstrap() {
 	
 	// Best practices
 	Dashboard_Widget\bootstrap();
+	Mode\bootstrap();
 }
 
 

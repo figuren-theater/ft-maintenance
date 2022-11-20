@@ -39,8 +39,7 @@ function load_plugin() {
 }
 
 
-function remove_admin_menus()
-{
+function remove_admin_menus() {
 	if ( current_user_can( 'manage_sites' ))
 		return;
 

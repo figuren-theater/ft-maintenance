@@ -25,19 +25,14 @@ const LOG  = WP_CONTENT_DIR . '/logs/php.' . VIEW . '.log';
 function bootstrap() {
 
 	// 
-	add_action( 'admin_menu', __NAMESPACE__ . '\\load' );
-}
-
-function load() {
-
-	if ( ! current_user_can( 'manage_sites' ))
-		return;
-
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
-
+	add_action( 'wp_network_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 }
 
 function add_widget() {
+
+	if ( ! current_user_can( 'manage_sites' ))
+		return;
 
 	wp_add_dashboard_widget( 
 		'cbstdsys-php-errorlog',
@@ -95,7 +90,8 @@ function render_widget() {
 		echo 's';
 	echo '.';
 
-	echo ' [ <b><a href="'.admin_url('?cbstdsys-php-errorlog=clear').'" onclick="return;">CLEAR LOG FILE</a></b> ]';
+	// echo ' [ <b><a href="'.admin_url('?cbstdsys-php-errorlog=clear').'" onclick="return;">CLEAR LOG FILE</a></b> ]';
+	echo ' [ <b><a href="?cbstdsys-php-errorlog=clear" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo '</p>';
 	
 	echo '<div id="cbstdsys-php-errorlog" style="height:250px;overflow-y:scroll;padding:2px;background-color:#faf9f7;border:1px solid #ccc;">';
