@@ -17,7 +17,9 @@ use function current_user_can;
 use function wp_add_dashboard_widget;
 
 const VIEW = ( WP_DEBUG ) ? 'debug' : 'error';
-const LOG  = WP_CONTENT_DIR . '/logs/php.' . VIEW . '.log';
+const FILE = '/logs/php.' . VIEW . '.log';
+
+const LOG  = WP_CONTENT_DIR . FILE;
 
 /**
  * Bootstrap module, when enabled.
@@ -40,7 +42,7 @@ function add_widget() {
 		sprintf(
 			'%s Log (%s)',
 			ucfirst( VIEW ),
-			'<code>' . LOG . '</code>'
+			'<abbr title="' . LOG . '">...' . FILE . '</abbr>'
 		),
 		__NAMESPACE__ . '\\render_widget'
 	);
