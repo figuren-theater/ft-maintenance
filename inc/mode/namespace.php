@@ -15,15 +15,19 @@ const TEMPLATE = __DIR__ . '/error-template.php';
 function bootstrap() {
 
 	if ( defined( 'FT_MAINTENANCE_MODE' ) && FT_MAINTENANCE_MODE )
-		add_action( 'get_header', __NAMESPACE__ . '\\load', 0 );
+		\add_action( 'set_current_user', __NAMESPACE__ . '\\load', -1000 );
+		// \add_action( 'init', __NAMESPACE__ . '\\load', -1000 );
+		// \add_action( 'template_redirect', __NAMESPACE__ . '\\load', -1000 );
+		// add_action( 'wp_loaded', __NAMESPACE__ . '\\load', 0 );
+		// add_action( 'get_header', __NAMESPACE__ . '\\load', 0 );
 
-	add_action( 'load-plugins.php', __NAMESPACE__ . '\\load_plugins' );
+	\add_action( 'load-plugins.php', __NAMESPACE__ . '\\load_plugins' );
 }
 
 // Activate WordPress Maintenance Mode
 function load() {
 
-	if ( current_user_can( 'edit_themes' ) )
+	if ( \current_user_can( 'switch_themes' ) )
 		return;
 
 	define( 'FT_ERROR_MAIL_TO', 'f.t web-Crew <' . getenv( 'FT_ERROR_MAIL_TO' ) . '>' );

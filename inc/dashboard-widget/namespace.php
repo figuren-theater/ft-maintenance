@@ -40,7 +40,10 @@ function add_widget() {
 		'cbstdsys-php-errorlog',
 		// 'Debug Log (/wp-content/logs/php.debug.log)',
 		sprintf(
-			'%s Log (%s)',
+			# the sourrounding span helps preventing a layout bug with WordPress 
+			# default '.postbox-header .hndle' class
+			# which sets: "justify-content: space-between;"
+			'<span>%s Log (%s)</span>',
 			ucfirst( VIEW ),
 			'<abbr title="' . LOG . '">...' . FILE . '</abbr>'
 		),

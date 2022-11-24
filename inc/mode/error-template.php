@@ -11,7 +11,7 @@
 
 namespace Figuren_Theater\Maintenance\Mode;
 
-const ASSETS = WPMU_PLUGIN_DIR . '/FT/ft-maintenance/assets/';
+const ASSETS = WPMU_PLUGIN_URL . '/FT/ft-maintenance/assets/';
 
 
 
@@ -86,7 +86,7 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 }
 ?>
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
 	<meta name="robots" content="noindex">
@@ -177,3 +177,6 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 	</body>
 </html>
 <?php
+
+// exit();
+die();

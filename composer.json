@@ -3,7 +3,7 @@
 	"description": "Everything you need to maintain and maybe debug a running WordPress Multisite like figuren.theater",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "maintenance", "debug"],
+    "keywords": ["wordpress", "maintenance", "debug", "cron", "error_log"],
     "license": "GPL-3.0-or-later",
     "authors": [
         {

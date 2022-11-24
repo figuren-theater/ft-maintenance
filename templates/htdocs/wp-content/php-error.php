@@ -26,8 +26,6 @@
 
 namespace Figuren_Theater\Maintenance\Mode;
 
-const TEMPLATE = __DIR__ . '/mu-plugins/FT/ft-maintenance/inc/mode/error-template.php';
-
 define( 'FT_ERROR_MAIL_TO', 'f.t web-Crew <' . getenv( 'FT_ERROR_MAIL_TO' ) . '>' );
 define( 'FT_ERROR_MAIL_FROM', getenv( 'FT_ERROR_MAIL_TO' ) );
 define( 'FT_ERROR_MAIL_INTERVAL', 300 );
@@ -35,4 +33,4 @@ define( 'FT_ERROR_SUPPRESS_EMAIL', true );
 
 define( 'FT_ERROR_STATUS', '500' );
 
-require TEMPLATE;
+require __DIR__ . '/mu-plugins/FT/ft-maintenance/inc/mode/error-template.php';

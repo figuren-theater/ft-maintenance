@@ -18,6 +18,7 @@ Thoose are completely managed by code and lack of their typical UI.
 Accompaniying the core functionality of the mentioned plugins, theese **best practices** are included with this package.
 
 - Show a Dashboard Widget with the content of either the Error- or the Debug-logfile to Users with `manage-sites` capabilities.
+- manual maintenance mode, just define `FT_MAINTENANCE_MODE` somewhere, before the `init` action is called
 - Drop-ins:
 
 Add the following to your composer project:
