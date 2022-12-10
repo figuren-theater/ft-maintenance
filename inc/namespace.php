@@ -47,6 +47,7 @@ function bootstrap() {
 	// WP_Sync_DB\bootstrap();
 	
 	// Best practices
+	Blog_Management\bootstrap();
 	Dashboard_Widget\bootstrap();
 	Mode\bootstrap();
 }

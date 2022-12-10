@@ -19,6 +19,7 @@ Accompaniying the core functionality of the mentioned plugins, theese **best pra
 
 - Show a Dashboard Widget with the content of either the Error- or the Debug-logfile to Users with `manage-sites` capabilities.
 - manual maintenance mode, just define `FT_MAINTENANCE_MODE` somewhere, before the `init` action is called
+- Delete some additional DB tables, created by plugins, during blog-deletion.
 - Drop-ins:
 
 Add the following to your composer project:

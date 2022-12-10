@@ -7,6 +7,20 @@
 
 namespace Figuren_Theater\Maintenance\Mode;
 
+use FT_ERROR_MAIL_FROM;
+use FT_ERROR_MAIL_INTERVAL;
+use FT_ERROR_MAIL_TO;
+use FT_ERROR_SUPPRESS_EMAIL;
+
+use FT_MAINTENANCE_MODE;
+
+use function __;
+use function add_action;
+use function add_filter;
+use function current_user_can;
+use function esc_html__;
+use function wp_kses;
+
 const TEMPLATE = __DIR__ . '/error-template.php';
 
 /**
@@ -15,19 +29,15 @@ const TEMPLATE = __DIR__ . '/error-template.php';
 function bootstrap() {
 
 	if ( defined( 'FT_MAINTENANCE_MODE' ) && FT_MAINTENANCE_MODE )
-		\add_action( 'set_current_user', __NAMESPACE__ . '\\load', -1000 );
-		// \add_action( 'init', __NAMESPACE__ . '\\load', -1000 );
-		// \add_action( 'template_redirect', __NAMESPACE__ . '\\load', -1000 );
-		// add_action( 'wp_loaded', __NAMESPACE__ . '\\load', 0 );
-		// add_action( 'get_header', __NAMESPACE__ . '\\load', 0 );
+		add_action( 'set_current_user', __NAMESPACE__ . '\\load', -1000 );
 
-	\add_action( 'load-plugins.php', __NAMESPACE__ . '\\load_plugins' );
+	add_action( 'load-plugins.php', __NAMESPACE__ . '\\load_plugins' );
 }
 
 // Activate WordPress Maintenance Mode
 function load() {
 
-	if ( \current_user_can( 'switch_themes' ) )
+	if ( current_user_can( 'switch_themes' ) )
 		return;
 
 	define( 'FT_ERROR_MAIL_TO', 'f.t web-Crew <' . getenv( 'FT_ERROR_MAIL_TO' ) . '>' );
@@ -55,26 +65,29 @@ function load_plugins() {
  * @return array Modified meta links
  */
 function output_dropin_note( $meta, $file, $data, $status ) {
-	if ( $status !== 'dropins' )
+	if ( 'dropins' !== $status )
 		return $meta;
 
-	if ( ! in_array( $file, ['maintenance.php', 'php-error.php', 'db-error.php'] ) )
+	if ( ! in_array( $file, [ 'maintenance.php', 'php-error.php', 'db-error.php' ] ) )
 		return $meta;
 
-	$note = '<em>' . wp_kses( sprintf(
-		__( 'Enhanced by <a href="%1$s" title="%2$s">%3$s</a>', 'figurentheater' ),
-		'https://github.com/figuren-theater/ft-maintenance',
+	$note = '<em>' . wp_kses( 
 		sprintf(
-			esc_html__( 'Version %s', 'figurentheater' ),
-			FT_PLATTFORM_VERSION
+			__( 'Enhanced by <a href="%1$s" title="%2$s">%3$s</a>', 'figurentheater' ),
+			'https://github.com/figuren-theater/ft-maintenance',
+			sprintf(
+				esc_html__( 'Version %s', 'figurentheater' ),
+				FT_PLATTFORM_VERSION
+			),
+			__NAMESPACE__
 		),
-		__NAMESPACE__
-	), array(
-		'a' => array(
-			'href' => array(),
-			'title' => array(),
-		),
-	) ) . '</em>';
+		[
+			'a' => [
+				'href'  => [],
+				'title' => [],
+			],
+		]
+	) . '</em>';
 	array_unshift( $meta, $note );
 
 	return $meta;

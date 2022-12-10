@@ -24,7 +24,8 @@
     },
 	"autoload": {
 		"files": [
-			"inc/dashboard-widget/namespace.php",
+			"inc/blog-management/namespace.php",
+            "inc/dashboard-widget/namespace.php",
 			"inc/mode/namespace.php",
             "inc/query-monitor/namespace.php",
 			"inc/wp-crontrol/namespace.php",
@@ -53,7 +54,7 @@
         "php": ">=7.1",
         "figuren-theater/ft-options": "^1",
 		"johnbillion/query-monitor": "^3.10",
-		"johnbillion/wp-crontrol": "^1.14",
+		"johnbillion/wp-crontrol": "^1.15",
 		"pixelstudio/wp-sync-db": "^1.7",
         "koodimonni/composer-dropin-installer": "^1.4"
 	},
