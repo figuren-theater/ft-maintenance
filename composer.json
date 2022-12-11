@@ -29,6 +29,7 @@
 			"inc/mode/namespace.php",
             "inc/query-monitor/namespace.php",
 			"inc/wp-crontrol/namespace.php",
+            "inc/wp-cron-runner/namespace.php",
 			"inc/wp-sync-db/namespace.php",
 			"inc/namespace.php"
 		],
@@ -56,11 +57,13 @@
 		"johnbillion/query-monitor": "^3.10",
 		"johnbillion/wp-crontrol": "^1.15",
 		"pixelstudio/wp-sync-db": "^1.7",
-        "koodimonni/composer-dropin-installer": "^1.4"
+        "koodimonni/composer-dropin-installer": "^1.4",
+		"devgeniem/wp-cron-runner": "^1.0"
 	},
     "extra": {
         "altis": {
             "install-overrides": [
+                "devgeniem/wp-cron-runner",
 				"johnbillion/query-monitor",
 				"johnbillion/wp-crontrol",
 				"pixelstudio/wp-sync-db"

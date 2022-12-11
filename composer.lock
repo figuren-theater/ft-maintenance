@@ -1,0 +1,503 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c294a809a657eebd6ed9112d5d40ddd6",
+    "packages": [
+        {
+            "name": "composer/installers",
+            "version": "v1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.6.* || ^2.0",
+                "composer/semver": "^1 || ^3",
+                "phpstan/phpstan": "^0.12.55",
+                "phpstan/phpstan-phpunit": "^0.12.16",
+                "symfony/phpunit-bridge": "^4.2 || ^5",
+                "symfony/process": "^2.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
+                "MODX Evo",
+                "MantisBT",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Starbug",
+                "Thelia",
+                "Whmcs",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "eZ Platform",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "known",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "majima",
+                "mako",
+                "mediawiki",
+                "miaoxing",
+                "modulework",
+                "modx",
+                "moodle",
+                "osclass",
+                "pantheon",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "processwire",
+                "puppet",
+                "pxcms",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "sylius",
+                "symfony",
+                "tastyigniter",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "support": {
+                "issues": "https://github.com/composer/installers/issues",
+                "source": "https://github.com/composer/installers/tree/v1.12.0"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-09-13T08:19:44+00:00"
+        },
+        {
+            "name": "devgeniem/wp-cron-runner",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devgeniem/wp-cron-runner.git",
+                "reference": "52c04ba7cd50a0deae6f58ee86fe8b31cdf7e504"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devgeniem/wp-cron-runner/zipball/52c04ba7cd50a0deae6f58ee86fe8b31cdf7e504",
+                "reference": "52c04ba7cd50a0deae6f58ee86fe8b31cdf7e504",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": ">=1.0.12",
+                "php": ">=5.4"
+            },
+            "type": "wordpress-muplugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ville Siltala",
+                    "email": "ville.siltala@geniem.com",
+                    "homepage": "http://geniem.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This mu-plugin lets you run WP cron for a site / network site via a single endpoint.",
+            "keywords": [
+                "cron",
+                "mu-plugin",
+                "wordpress",
+                "wp-cron"
+            ],
+            "support": {
+                "issues": "https://github.com/devgeniem/wp-cron-runner/issues",
+                "source": "https://github.com/devgeniem/wp-cron-runner/tree/master"
+            },
+            "time": "2018-12-03T11:08:59+00:00"
+        },
+        {
+            "name": "figuren-theater/ft-options",
+            "version": "1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/figuren-theater/ft-options",
+                "reference": "caaceb3c7c3db12e92e33773db8db48b01070fb9"
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "wordpress-muplugin",
+            "autoload": {
+                "psr-4": {
+                    "Figuren_Theater\\Options\\": "inc/"
+                }
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "figuren.theater",
+                    "email": "info@figuren.theater"
+                },
+                {
+                    "name": "Carsten Bach",
+                    "email": "mail@carsten-bach.de",
+                    "homepage": "https://carsten-bach.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Options Management for a WordPress Multisite like figuren.theater",
+            "homepage": "https://websites.fuer.figuren.theater",
+            "keywords": [
+                "multisite",
+                "options",
+                "settings",
+                "wordpress"
+            ],
+            "support": {
+                "email": "info@figuren.theater",
+                "issues": "https://github.com/figuren-theater/ft-options/issues",
+                "source": "https://github.com/figuren-theater/ft-options"
+            },
+            "time": "2022-12-05T00:41:13+00:00"
+        },
+        {
+            "name": "johnbillion/query-monitor",
+            "version": "3.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnbillion/query-monitor.git",
+                "reference": "4bafa6c6e91ecb7ac186c76c1f71b49cbc001eea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/4bafa6c6e91ecb7ac186c76c1f71b49cbc001eea",
+                "reference": "4bafa6c6e91ecb7ac186c76c1f71b49cbc001eea",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6.20"
+            },
+            "require-dev": {
+                "codeception/module-asserts": "^1.0",
+                "codeception/module-db": "^1.0",
+                "codeception/module-webdriver": "^1.0",
+                "codeception/util-universalframework": "^1.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
+                "lucatume/wp-browser": "^3.0.21",
+                "phpcompatibility/phpcompatibility-wp": "2.1.0",
+                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "roots/wordpress": "*",
+                "squizlabs/php_codesniffer": "3.5.8",
+                "szepeviktor/phpstan-wordpress": "^1.0",
+                "wp-coding-standards/wpcs": "2.3.0"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "wordpress-install-dir": "tests/wordpress"
+            },
+            "autoload": {
+                "classmap": [
+                    "classes",
+                    "output"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "John Blackbourn",
+                    "homepage": "https://johnblackbourn.com/"
+                }
+            ],
+            "description": "The Developer Tools panel for WordPress.",
+            "homepage": "https://github.com/johnbillion/query-monitor/",
+            "support": {
+                "forum": "https://wordpress.org/support/plugin/query-monitor",
+                "issues": "https://github.com/johnbillion/query-monitor/issues",
+                "source": "https://github.com/johnbillion/query-monitor"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/johnbillion",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-09-09T22:13:39+00:00"
+        },
+        {
+            "name": "johnbillion/wp-crontrol",
+            "version": "1.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnbillion/wp-crontrol.git",
+                "reference": "124bfd6b4abf472dfb727d2d8dc3a73d40180ddb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/124bfd6b4abf472dfb727d2d8dc3a73d40180ddb",
+                "reference": "124bfd6b4abf472dfb727d2d8dc3a73d40180ddb",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "codeception/module-asserts": "^1.0",
+                "codeception/module-filesystem": "^1.0",
+                "codeception/module-webdriver": "^1.0",
+                "codeception/util-universalframework": "^1.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "lucatume/wp-browser": "^3.0",
+                "phpcompatibility/phpcompatibility-wp": "2.1.2",
+                "phpstan/phpstan": "^1.7",
+                "phpunit/phpunit": "^9.0",
+                "roots/wordpress-core-installer": "^1.0.0",
+                "roots/wordpress-full": "*",
+                "szepeviktor/phpstan-wordpress": "^1.0",
+                "wp-coding-standards/wpcs": "2.3.0"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "wordpress-install-dir": "tests/wordpress"
+            },
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "John Blackbourn",
+                    "homepage": "https://johnblackbourn.com/"
+                },
+                {
+                    "name": "Edward Dale",
+                    "homepage": "http://scompt.com/"
+                }
+            ],
+            "description": "WP Crontrol lets you view and control what's happening in the WP-Cron system.",
+            "homepage": "https://github.com/johnbillion/wp-crontrol/",
+            "support": {
+                "forum": "https://wordpress.org/support/plugin/wp-crontrol",
+                "issues": "https://github.com/johnbillion/wp-crontrol/issues",
+                "source": "https://github.com/johnbillion/wp-crontrol"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/johnbillion",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-11-28T23:54:49+00:00"
+        },
+        {
+            "name": "koodimonni/composer-dropin-installer",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Koodimonni/Composer-Dropin-Installer.git",
+                "reference": "9596ef8f50cbba2cdc707ca3b1f5e4a0e9fa7e7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Koodimonni/Composer-Dropin-Installer/zipball/9596ef8f50cbba2cdc707ca3b1f5e4a0e9fa7e7e",
+                "reference": "9596ef8f50cbba2cdc707ca3b1f5e4a0e9fa7e7e",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 | ^2.0",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Koodimonni\\Composer\\Dropin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Koodimonni\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "Onni Hakala",
+                    "email": "onni@keksi.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Install packages or a few files from packages into custom paths without overwriting existing stuff.",
+            "support": {
+                "issues": "https://github.com/Koodimonni/Composer-Dropin-Installer/issues",
+                "source": "https://github.com/Koodimonni/Composer-Dropin-Installer/tree/1.4"
+            },
+            "time": "2022-02-02T11:42:57+00:00"
+        },
+        {
+            "name": "pixelstudio/wp-sync-db",
+            "version": "1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hrsetyono/wp-sync-db.git",
+                "reference": "ae7fc9700b13012402701ebc9e4d55e0be9cc3fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hrsetyono/wp-sync-db/zipball/ae7fc9700b13012402701ebc9e4d55e0be9cc3fb",
+                "reference": "ae7fc9700b13012402701ebc9e4d55e0be9cc3fb",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=7.0.0"
+            },
+            "type": "wordpress-plugin",
+            "scripts": {
+                "test": [
+                    "./test.sh"
+                ]
+            },
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sean Lang",
+                    "email": "slang800@gmail.com",
+                    "homepage": "https://slang.cx/"
+                },
+                {
+                    "name": "Pixel Studio",
+                    "email": "info@pixelstudio.id",
+                    "homepage": "https://pixelstudio.id"
+                }
+            ],
+            "description": "WordPress plugin to sync database between different installs",
+            "homepage": "https://github.com/hrsetyono/wp-sync-db/",
+            "keywords": [
+                "database",
+                "plugin",
+                "sync",
+                "wordpress"
+            ],
+            "support": {
+                "source": "https://github.com/hrsetyono/wp-sync-db/tree/1.7.1",
+                "issues": "https://github.com/hrsetyono/wp-sync-db/issues"
+            },
+            "time": "2020-05-13T04:40:43+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.1"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

@@ -11,6 +11,8 @@ Thoose are completely managed by code and lack of their typical UI.
 
 * [Query Monitor](https://wordpress.org/plugins/query-monitor/#developers)
 * [WP Crontrol](https://wordpress.org/plugins/wp-crontrol/#developers)
+* [WP Cron Runner](https://github.com/devgeniem/wp-cron-runner)
+    A simple mu-plugin to run cron jobs on WordPress installations
 * [WP Sync DB](https://github.com/hrsetyono/wp-sync-db)
 
 ## What does this package do in addition?

@@ -17,10 +17,11 @@ use function Altis\register_module;
 function register() {
 
 	$default_settings = [
-		'enabled'       => true, // needs to be set
-		'query-monitor' => WP_DEBUG,
-		'wp-crontrol'   => WP_DEBUG,
-		'wp-sync-db'    => [],
+		'enabled'        => true, // needs to be set
+		'query-monitor'  => WP_DEBUG,
+		'wp-crontrol'    => WP_DEBUG,
+		'wp-cron-runner' => true,
+		'wp-sync-db'     => [],
 	];
 
 	$options = [
@@ -44,6 +45,7 @@ function bootstrap() {
 	// Plugins
 	Query_Monitor\bootstrap();
 	WP_Crontrol\bootstrap();
+	WP_Cron_Runner\bootstrap();
 	// WP_Sync_DB\bootstrap();
 	
 	// Best practices
