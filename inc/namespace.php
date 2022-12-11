@@ -7,6 +7,9 @@
 
 namespace Figuren_Theater\Maintenance;
 
+use WP_DEBUG;
+use DISABLE_WP_CRON;
+
 use Altis;
 use function Altis\register_module;
 
@@ -20,8 +23,8 @@ function register() {
 		'enabled'        => true, // needs to be set
 		'query-monitor'  => WP_DEBUG,
 		'wp-crontrol'    => WP_DEBUG,
-		'wp-cron-runner' => true,
-		'wp-sync-db'     => [],
+		'wp-cron-runner' => DISABLE_WP_CRON,
+		'wp-sync-db'     => true,
 	];
 
 	$options = [
@@ -46,7 +49,7 @@ function bootstrap() {
 	Query_Monitor\bootstrap();
 	WP_Crontrol\bootstrap();
 	WP_Cron_Runner\bootstrap();
-	// WP_Sync_DB\bootstrap();
+	WP_Sync_DB\bootstrap();
 	
 	// Best practices
 	Blog_Management\bootstrap();
