@@ -3,7 +3,7 @@
 	"description": "Everything you need to maintain and maybe debug a running WordPress Multisite like figuren.theater",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "maintenance", "debug", "cron", "error_log"],
+    "keywords": ["wordpress", "maintenance", "debug", "cron", "error_log", "backups"],
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -30,6 +30,7 @@
             "inc/query-monitor/namespace.php",
 			"inc/wp-crontrol/namespace.php",
             "inc/wp-cron-runner/namespace.php",
+            "inc/wp-db-backup/namespace.php",
 			"inc/wp-sync-db/namespace.php",
 			"inc/namespace.php"
 		],
@@ -58,7 +59,8 @@
 		"johnbillion/wp-crontrol": "^1.15",
 		"pixelstudio/wp-sync-db": "^1.7",
         "koodimonni/composer-dropin-installer": "^1.4",
-		"devgeniem/wp-cron-runner": "^1.0"
+		"devgeniem/wp-cron-runner": "^1.0",
+        "wpackagist-plugin/wp-db-backup":"2.5.2"
 	},
     "extra": {
         "altis": {
@@ -66,7 +68,8 @@
                 "devgeniem/wp-cron-runner",
 				"johnbillion/query-monitor",
 				"johnbillion/wp-crontrol",
-				"pixelstudio/wp-sync-db"
+				"pixelstudio/wp-sync-db",
+                "wpackagist-plugin/wp-db-backup"
             ]
         }
     },

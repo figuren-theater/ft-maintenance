@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c294a809a657eebd6ed9112d5d40ddd6",
+    "content-hash": "b40a91b45a96697a59045941878f8964",
     "packages": [
         {
             "name": "composer/installers",
@@ -203,11 +203,11 @@
         },
         {
             "name": "figuren-theater/ft-options",
-            "version": "1.1.6",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-options",
-                "reference": "caaceb3c7c3db12e92e33773db8db48b01070fb9"
+                "reference": "8f6bbd22d0dcfc3244063a73ce77f11979ae30b4"
             },
             "require": {
                 "php": ">=7.1"
@@ -246,20 +246,20 @@
                 "issues": "https://github.com/figuren-theater/ft-options/issues",
                 "source": "https://github.com/figuren-theater/ft-options"
             },
-            "time": "2022-12-05T00:41:13+00:00"
+            "time": "2022-12-31T01:06:34+00:00"
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.11.0",
+            "version": "3.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "47f8a0aeff354ee33537d11f5381c728b95a51d8"
+                "reference": "46f16175627900cb7d18bebf17f4ca41c62d5c23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/47f8a0aeff354ee33537d11f5381c728b95a51d8",
-                "reference": "47f8a0aeff354ee33537d11f5381c728b95a51d8",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/46f16175627900cb7d18bebf17f4ca41c62d5c23",
+                "reference": "46f16175627900cb7d18bebf17f4ca41c62d5c23",
                 "shasum": ""
             },
             "require": {
@@ -315,7 +315,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-30T16:57:14+00:00"
+            "time": "2023-01-03T21:14:04+00:00"
         },
         {
             "name": "johnbillion/wp-crontrol",
@@ -488,6 +488,24 @@
                 "issues": "https://github.com/hrsetyono/wp-sync-db/issues"
             },
             "time": "2020-05-13T04:40:43+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/wp-db-backup",
+            "version": "2.5.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-db-backup/",
+                "reference": "tags/2.5.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-db-backup.2.5.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-db-backup/"
         }
     ],
     "packages-dev": [],

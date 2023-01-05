@@ -13,6 +13,7 @@ Thoose are completely managed by code and lack of their typical UI.
 * [WP Crontrol](https://wordpress.org/plugins/wp-crontrol/#developers)
 * [WP Cron Runner](https://github.com/devgeniem/wp-cron-runner)
     A simple mu-plugin to run cron jobs on WordPress installations
+* [Database Backup for WordPress](https://wordpress.org/plugins/wp-db-backup/#developers)
 * [WP Sync DB](https://github.com/hrsetyono/wp-sync-db)
 
 ## What does this package do in addition?

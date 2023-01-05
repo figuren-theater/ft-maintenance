@@ -8,6 +8,7 @@
 namespace Figuren_Theater\Maintenance;
 
 use WP_DEBUG;
+use WP_ENVIRONMENT_TYPE;
 use DISABLE_WP_CRON;
 
 use Altis;
@@ -24,6 +25,7 @@ function register() {
 		'query-monitor'  => WP_DEBUG,
 		'wp-crontrol'    => WP_DEBUG,
 		'wp-cron-runner' => DISABLE_WP_CRON,
+		'wp-db-backup'   => ( 'production' === WP_ENVIRONMENT_TYPE ),
 		'wp-sync-db'     => true,
 	];
 
@@ -49,6 +51,7 @@ function bootstrap() {
 	Query_Monitor\bootstrap();
 	WP_Crontrol\bootstrap();
 	WP_Cron_Runner\bootstrap();
+	WP_DB_Backup\bootstrap();
 	WP_Sync_DB\bootstrap();
 	
 	// Best practices
@@ -62,7 +65,7 @@ function bootstrap() {
 // UNUSED IDEAS //
 //////////////////
 
-
+/*
 function get_log_folder() : string {
 	if ( defined('WP_DEBUG_LOG') ) {
 		return dirname( WP_DEBUG_LOG );
@@ -84,4 +87,4 @@ function is_log_folder_secured() : bool {
 
 function secure_log_folder() : void {
 	# code...
-}
+}*/
