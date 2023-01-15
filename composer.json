@@ -55,12 +55,12 @@
 	"require": {
         "php": ">=7.1",
         "figuren-theater/ft-options": "^1",
-		"johnbillion/query-monitor": "^3.10",
+		"johnbillion/query-monitor": "^3",
 		"johnbillion/wp-crontrol": "^1.15",
 		"pixelstudio/wp-sync-db": "^1.7",
         "koodimonni/composer-dropin-installer": "^1.4",
 		"devgeniem/wp-cron-runner": "^1.0",
-        "wpackagist-plugin/wp-db-backup":"2.5.2"
+        "wpackagist-plugin/wp-db-backup":"^2.5"
 	},
     "extra": {
         "altis": {
