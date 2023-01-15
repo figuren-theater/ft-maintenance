@@ -104,6 +104,7 @@ function render_widget() {
 	
 	$i = 0;
 	foreach ( $errors as $error ) {
+		$error = esc_html( $error );
 		echo '<li style="padding:2px 4px 6px;border-bottom:1px solid #ececec;">';
 		$errorOutput = preg_replace( '/\[([^\]]+)\]/', '<b>[$1]</b>', $error, 1 );
 		if ( strlen( $errorOutput ) > $errorLengthLimit ) {
