@@ -27,6 +27,7 @@
 			"inc/blog-management/namespace.php",
             "inc/dashboard-widget/namespace.php",
 			"inc/mode/namespace.php",
+            "inc/multisite-enhancements/namespace.php",
             "inc/query-monitor/namespace.php",
 			"inc/wp-crontrol/namespace.php",
             "inc/wp-cron-runner/namespace.php",
@@ -60,6 +61,7 @@
 		"pixelstudio/wp-sync-db": "^1.7",
         "koodimonni/composer-dropin-installer": "^1.4",
 		"devgeniem/wp-cron-runner": "^1.0",
+        "wpackagist-plugin/multisite-enhancements": "^1.6",
         "wpackagist-plugin/wp-db-backup":"^2.5"
 	},
     "extra": {
@@ -69,6 +71,7 @@
 				"johnbillion/query-monitor",
 				"johnbillion/wp-crontrol",
 				"pixelstudio/wp-sync-db",
+                "wpackagist-plugin/multisite-enhancements",
                 "wpackagist-plugin/wp-db-backup"
             ]
         }

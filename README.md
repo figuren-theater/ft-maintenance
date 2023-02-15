@@ -9,6 +9,7 @@ Everything you need to maintain and maybe debug a running WordPress Multisite li
 This package contains the following plugins. 
 Thoose are completely managed by code and lack of their typical UI.
 
+* [Multisite Enhancements](https://wordpress.org/plugins/multisite-enhancements/#developers)
 * [Query Monitor](https://wordpress.org/plugins/query-monitor/#developers)
 * [WP Crontrol](https://wordpress.org/plugins/wp-crontrol/#developers)
 * [WP Cron Runner](https://github.com/devgeniem/wp-cron-runner)
