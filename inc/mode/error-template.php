@@ -155,6 +155,7 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 			<div id="error">
 				<h1>Umbaupause</h1>
 				<p>Hinter den Kulissen wird gerade alles auf den Kopf gestellt.</p>
+				<p><a href="https://status.figuren.theater" rel="nofollow, noindex">status.figuren.theater</a> zeigt an, wenn es weiter geht.</p>
 				<p>Bitte gedulden Sie sich einen Augenblick, abonnieren Sie doch derweilen unseren Newsletter und besuchen Sie uns anschließend im sozialen Netz!</p>
 
 				<div id="credits">
