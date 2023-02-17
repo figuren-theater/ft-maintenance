@@ -14,7 +14,10 @@ use function Figuren_Theater\get_config;
 
 use function add_action;
 use function current_user_can;
+use function is_admin;
 use function remove_action;
+use function wp_doing_ajax;
+use function wp_doing_cron;
 
 const BASENAME   = 'wp-crontrol/wp-crontrol.php';
 const PLUGINPATH = FT_VENDOR_DIR . '/johnbillion/' . BASENAME;
@@ -32,6 +35,9 @@ function load_plugin() {
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
 	if ( ! $config['wp-crontrol'] )
 		return; // early
+
+	if ( ! is_admin() || wp_doing_ajax() || wp_doing_cron() )
+		return;
 
 	require_once PLUGINPATH;
 

@@ -48,6 +48,7 @@ function register() {
 function bootstrap() {
 
 	// Plugins
+	Multisite_Enhancements\bootstrap();
 	Query_Monitor\bootstrap();
 	WP_Crontrol\bootstrap();
 	WP_Cron_Runner\bootstrap();
