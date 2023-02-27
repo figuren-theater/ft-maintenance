@@ -251,16 +251,16 @@
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.11.1",
+            "version": "3.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "46f16175627900cb7d18bebf17f4ca41c62d5c23"
+                "reference": "87f5b091fd4557772f9f9279bf55fd3dd8b15f90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/46f16175627900cb7d18bebf17f4ca41c62d5c23",
-                "reference": "46f16175627900cb7d18bebf17f4ca41c62d5c23",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/87f5b091fd4557772f9f9279bf55fd3dd8b15f90",
+                "reference": "87f5b091fd4557772f9f9279bf55fd3dd8b15f90",
                 "shasum": ""
             },
             "require": {
@@ -316,7 +316,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-03T21:14:04+00:00"
+            "time": "2023-02-23T16:41:12+00:00"
         },
         {
             "name": "johnbillion/wp-crontrol",
