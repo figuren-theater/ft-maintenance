@@ -11,6 +11,8 @@
 
 namespace Figuren_Theater\Maintenance\Mode;
 
+use WPMU_PLUGIN_URL;
+
 const ASSETS = WPMU_PLUGIN_URL . '/FT/ft-maintenance/assets/';
 
 

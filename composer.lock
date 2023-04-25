@@ -251,16 +251,16 @@
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.11.2",
+            "version": "3.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "87f5b091fd4557772f9f9279bf55fd3dd8b15f90"
+                "reference": "9c7d97f585309b43094c5dea4545e14a57b57336"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/87f5b091fd4557772f9f9279bf55fd3dd8b15f90",
-                "reference": "87f5b091fd4557772f9f9279bf55fd3dd8b15f90",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/9c7d97f585309b43094c5dea4545e14a57b57336",
+                "reference": "9c7d97f585309b43094c5dea4545e14a57b57336",
                 "shasum": ""
             },
             "require": {
@@ -273,6 +273,8 @@
                 "codeception/module-webdriver": "^1.0",
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
+                "ergebnis/composer-normalize": "^2",
+                "johnbillion/plugin-infrastructure": "dev-trunk",
                 "lucatume/wp-browser": "^3.0.21",
                 "phpcompatibility/phpcompatibility-wp": "2.1.4",
                 "phpstan/phpstan": "^1.0",
@@ -284,7 +286,7 @@
             },
             "type": "wordpress-plugin",
             "extra": {
-                "wordpress-install-dir": "tests/wordpress"
+                "wordpress-install-dir": "vendor/roots/wordpress"
             },
             "autoload": {
                 "classmap": [
@@ -316,20 +318,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-23T16:41:12+00:00"
+            "time": "2023-03-24T12:42:30+00:00"
         },
         {
             "name": "johnbillion/wp-crontrol",
-            "version": "1.15.1",
+            "version": "1.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/wp-crontrol.git",
-                "reference": "083c482ef9de79dec51fcb59869c766024824ca8"
+                "reference": "e5cac03d75b55675fa4cda7ef851cd46e00f6b97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/083c482ef9de79dec51fcb59869c766024824ca8",
-                "reference": "083c482ef9de79dec51fcb59869c766024824ca8",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/e5cac03d75b55675fa4cda7ef851cd46e00f6b97",
+                "reference": "e5cac03d75b55675fa4cda7ef851cd46e00f6b97",
                 "shasum": ""
             },
             "require": {
@@ -387,7 +389,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-29T19:24:36+00:00"
+            "time": "2023-03-15T17:54:20+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",
