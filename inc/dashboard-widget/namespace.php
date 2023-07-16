@@ -7,42 +7,43 @@
 
 namespace Figuren_Theater\Maintenance\Dashboard_Widget;
 
-use WP_DEBUG;
-use WP_CONTENT_DIR;
-
 use function add_action;
-use function admin_url;
+
 use function balanceTags;
 use function current_user_can;
 use function wp_add_dashboard_widget;
+use WP_CONTENT_DIR;
+use WP_DEBUG_LOG;
 
-const VIEW = ( WP_DEBUG ) ? 'debug' : 'error';
-const FILE = '/logs/php.' . VIEW . '.log';
+// // const VIEW = ( defined( 'WP_DEBUG' ) ) ? 'debug' : 'error';
+// const VIEW = 'debugORerror';
+// const FILE = '/logs/php.' . VIEW . '.log';
 
-const LOG  = WP_CONTENT_DIR . FILE;
+// const LOG = \WP_CONTENT_DIR . FILE;
+// // const LOG = \WP_DEBUG_LOG;
 
 /**
  * Bootstrap module, when enabled.
  */
 function bootstrap() {
 
-	// 
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 	add_action( 'wp_network_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 }
 
 function add_widget() {
 
-	if ( ! current_user_can( 'manage_sites' ))
+	if ( ! current_user_can( 'manage_sites' ) ) {
 		return;
+	}
 
-	wp_add_dashboard_widget( 
+	wp_add_dashboard_widget(
 		'cbstdsys-php-errorlog',
 		// 'Debug Log (/wp-content/logs/php.debug.log)',
 		sprintf(
-			# the sourrounding span helps preventing a layout bug with WordPress 
-			# default '.postbox-header .hndle' class
-			# which sets: "justify-content: space-between;"
+			// the sourrounding span helps preventing a layout bug with WordPress
+			// default '.postbox-header .hndle' class
+			// which sets: "justify-content: space-between;"
 			'<span>%s Log (%s)</span>',
 			ucfirst( VIEW ),
 			'<abbr title="' . LOG . '">...' . FILE . '</abbr>'
@@ -51,28 +52,27 @@ function add_widget() {
 	);
 }
 
-
 /**
  *  @todo  clean this up even more. This is still a mess from 1995.
- *  
+ *
  *  server monitoring as dashboard widget
  *  reads php_error.log or debug.log if WP_DEBUG is TRUE
- *  
+ *
  *  @since 0.0.1
  */
 function render_widget() {
 
 	// The maximum number of errors to display in the widget
 	$displayErrorsLimit = 1000;
-	
+
 	// The maximum number of characters to display for each error
 	$errorLengthLimit = 1000;
-	
+
 	$fileCleared = false;
 
 	// Clear file?
-	if ( isset( $_GET["cbstdsys-php-errorlog"] ) && $_GET["cbstdsys-php-errorlog"]=="clear" ) {
-		$handle = fopen( LOG, "w" );
+	if ( isset( $_GET['cbstdsys-php-errorlog'] ) && $_GET['cbstdsys-php-errorlog'] == 'clear' ) {
+		$handle = fopen( LOG, 'w' );
 		fclose( $handle );
 		$fileCleared = true;
 	}
@@ -83,38 +83,41 @@ function render_widget() {
 
 	$errors = file( LOG );
 	$errors = array_reverse( $errors );
-	
-	if ( $fileCleared )
+
+	if ( $fileCleared ) {
 		echo '<p><em>File cleared.</em></p>';
+	}
 
-	if ( ! $errors )
+	if ( ! $errors ) {
 		echo '<p>No errors currently logged.</p>';
+	}
 
-	echo '<p>'.count( $errors ).' error';
-	if ( $errors != 1 )
+	echo '<p>' . count( $errors ) . ' error';
+	if ( $errors != 1 ) {
 		echo 's';
+	}
 	echo '.';
 
 	// echo ' [ <b><a href="'.admin_url('?cbstdsys-php-errorlog=clear').'" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo ' [ <b><a href="?cbstdsys-php-errorlog=clear" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo '</p>';
-	
+
 	echo '<div id="cbstdsys-php-errorlog" style="height:250px;overflow-y:scroll;padding:2px;background-color:#faf9f7;border:1px solid #ccc;">';
 	echo '<ol style="padding:0;margin:0;">';
-	
+
 	$i = 0;
 	foreach ( $errors as $error ) {
 		$error = esc_html( $error );
 		echo '<li style="padding:2px 4px 6px;border-bottom:1px solid #ececec;">';
 		$errorOutput = preg_replace( '/\[([^\]]+)\]/', '<b>[$1]</b>', $error, 1 );
 		if ( strlen( $errorOutput ) > $errorLengthLimit ) {
-			$errorOutput = substr( $errorOutput, 0, $errorLengthLimit ).' [&hellip;]';
+			$errorOutput = substr( $errorOutput, 0, $errorLengthLimit ) . ' [&hellip;]';
 		}
 		echo balanceTags( $errorOutput, true );
 		echo '</li>';
 		$i++;
 		if ( $i > $displayErrorsLimit ) {
-			echo '<li class="howto">More than '.$displayErrorsLimit.' errors in log...</li>';
+			echo '<li class="howto">More than ' . $displayErrorsLimit . ' errors in log...</li>';
 			break;
 		}
 	}

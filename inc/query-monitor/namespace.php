@@ -2,24 +2,27 @@
 /**
  * Figuren_Theater Maintenance Query_Monitor.
  *
- * @package figuren-theater/maintenance/query_monitor
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\Query_Monitor;
 
-use FT_VENDOR_DIR;
-
 use Figuren_Theater;
-use function Figuren_Theater\get_config;
 
+use FT_VENDOR_DIR;
 use function add_action;
 
 const BASENAME   = 'query-monitor/query-monitor.php';
-const PLUGINPATH = FT_VENDOR_DIR . '/johnbillion/' . BASENAME;
+const PLUGINPATH = '/johnbillion/' . BASENAME;
 
-
-// defined( 'QM_SHOW_ALL_HOOKS' ) ?: define( 'QM_SHOW_ALL_HOOKS', true );
-// defined( 'QM_ENABLE_CAPS_PANEL' ) ?: define( 'QM_ENABLE_CAPS_PANEL', true );
+/**
+ * This could be used for debugging
+ *
+ * Or could be used exclusively via maintenance-mode
+ *
+ * defined( 'QM_SHOW_ALL_HOOKS' ) ?: define( 'QM_SHOW_ALL_HOOKS', true );
+ * defined( 'QM_ENABLE_CAPS_PANEL' ) ?: define( 'QM_ENABLE_CAPS_PANEL', true );
+ */
 
 /**
  * Bootstrap module, when enabled.
@@ -29,11 +32,15 @@ function bootstrap() {
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
 
+/**
+ * Conditionally load the plugin itself and its modifications.
+ */
 function load_plugin() {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
-	if ( ! $config['query-monitor'] )
-		return; // early
+	if ( ! $config['query-monitor'] ) {
+		return;
+	}
 
-	require_once PLUGINPATH;
+	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 }

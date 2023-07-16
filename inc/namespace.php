@@ -7,13 +7,11 @@
 
 namespace Figuren_Theater\Maintenance;
 
-use WP_DEBUG;
-use WP_ENVIRONMENT_TYPE;
+use Altis;
 use DISABLE_WP_CRON;
 
-use Altis;
-use function Altis\register_module;
-
+use WP_DEBUG;
+use WP_ENVIRONMENT_TYPE;
 
 /**
  * Register module.
@@ -21,7 +19,7 @@ use function Altis\register_module;
 function register() {
 
 	$default_settings = [
-		'enabled'        => true, // needs to be set
+		'enabled'        => true, // Needs to be set.
 		'query-monitor'  => WP_DEBUG,
 		'wp-crontrol'    => WP_DEBUG,
 		'wp-cron-runner' => DISABLE_WP_CRON,
@@ -47,45 +45,16 @@ function register() {
  */
 function bootstrap() {
 
-	// Plugins
+	// Plugins.
 	Multisite_Enhancements\bootstrap();
 	Query_Monitor\bootstrap();
 	WP_Crontrol\bootstrap();
 	WP_Cron_Runner\bootstrap();
 	WP_DB_Backup\bootstrap();
 	WP_Sync_DB\bootstrap();
-	
-	// Best practices
+
+	// Best practices.
 	Blog_Management\bootstrap();
 	Dashboard_Widget\bootstrap();
 	Mode\bootstrap();
 }
-
-
-//////////////////
-// UNUSED IDEAS //
-//////////////////
-
-/*
-function get_log_folder() : string {
-	if ( defined('WP_DEBUG_LOG') ) {
-		return dirname( WP_DEBUG_LOG );
-	}
-
-	return '';
-}
-
-
-function is_log_folder_secured() : bool {
-	
-	$log_folder_htaccess = get_log_folder() . '/.htaccess';
-	if ( file_exists( $log_folder_htaccess ) ) {
-		return true;
-	}
-
-	return false;
-}
-
-function secure_log_folder() : void {
-	# code...
-}*/

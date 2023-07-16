@@ -2,17 +2,16 @@
 /**
  * Figuren_Theater Maintenance WP_Crontrol.
  *
- * @package figuren-theater/maintenance/wp_crontrol
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\WP_Crontrol;
 
-use FT_VENDOR_DIR;
-
 use Figuren_Theater;
-use function Figuren_Theater\get_config;
 
+use FT_VENDOR_DIR;
 use function add_action;
+
 use function current_user_can;
 use function is_admin;
 use function remove_action;
@@ -20,7 +19,7 @@ use function wp_doing_ajax;
 use function wp_doing_cron;
 
 const BASENAME   = 'wp-crontrol/wp-crontrol.php';
-const PLUGINPATH = FT_VENDOR_DIR . '/johnbillion/' . BASENAME;
+const PLUGINPATH = '/johnbillion/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
@@ -30,26 +29,34 @@ function bootstrap() {
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
 
+/**
+ * Conditionally load the plugin itself and its modifications.
+ */
 function load_plugin() {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
-	if ( ! $config['wp-crontrol'] )
-		return; // early
-
-	if ( ! is_admin() || wp_doing_ajax() || wp_doing_cron() )
+	if ( ! $config['wp-crontrol'] ) {
 		return;
+	}
 
-	require_once PLUGINPATH;
+	if ( ! is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
+		return;
+	}
+
+	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_admin_menus', 0 );
 }
 
-
+/**
+ * Remove 'wp-crontrol' Submenu from 'Settings' and Submenu from 'Tools'
+ *
+ * @return void
+ */
 function remove_admin_menus() {
-	if ( current_user_can( 'manage_sites' ))
+	if ( current_user_can( 'manage_sites' ) ) {
 		return;
+	}
 
-	// Remove Submenu from 'Settings' and 
-	// Submenu from 'Tools'
 	remove_action( 'admin_menu', 'Crontrol\\action_admin_menu' );
 }
