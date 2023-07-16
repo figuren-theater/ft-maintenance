@@ -1,84 +1,99 @@
 {
 	"name": "figuren-theater/ft-maintenance",
 	"description": "Everything you need to maintain and maybe debug a running WordPress Multisite network like figuren.theater",
-    "homepage": "https://websites.fuer.figuren.theater",
-    "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "maintenance", "debug", "cron", "error_log", "backups"],
-    "license": "GPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "figuren.theater",
-            "email": "info@figuren.theater"
-        },
-        {
-            "name": "Carsten Bach",
-            "email": "mail@carsten-bach.de",
-            "homepage": "https://carsten-bach.de",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "email": "info@figuren.theater",
-        "issues": "https://github.com/figuren-theater/ft-maintenance/issues",
-        "source": "https://github.com/figuren-theater/ft-maintenance"
-    },
-	"autoload": {
-		"files": [
-			"inc/blog-management/namespace.php",
-            "inc/dashboard-widget/namespace.php",
-			"inc/mode/namespace.php",
-            "inc/multisite-enhancements/namespace.php",
-            "inc/query-monitor/namespace.php",
-			"inc/wp-crontrol/namespace.php",
-            "inc/wp-cron-runner/namespace.php",
-            "inc/wp-db-backup/namespace.php",
-			"inc/wp-sync-db/namespace.php",
-			"inc/namespace.php"
-		],
-        "classmap": [
-            "inc/"
-        ]
+	"license": "GPL-3.0-or-later",
+	"type": "wordpress-muplugin",
+	"keywords": [
+		"wordpress",
+		"maintenance",
+		"debug",
+		"cron",
+		"error_log",
+		"backups"
+	],
+	"authors": [
+		{
+			"name": "figuren.theater",
+			"email": "info@figuren.theater"
+		},
+		{
+			"name": "Carsten Bach",
+			"email": "mail@carsten-bach.de",
+			"homepage": "https://carsten-bach.de",
+			"role": "Developer"
+		}
+	],
+	"homepage": "https://websites.fuer.figuren.theater",
+	"support": {
+		"email": "info@figuren.theater",
+		"issues": "https://github.com/figuren-theater/ft-maintenance/issues",
+		"source": "https://github.com/figuren-theater/ft-maintenance"
+	},
+	"require": {
+		"php": ">=7.1",
+		"devgeniem/wp-cron-runner": "^1.0",
+		"figuren-theater/ft-options": "^1",
+		"johnbillion/query-monitor": "^3",
+		"johnbillion/wp-crontrol": "^1.15",
+		"koodimonni/composer-dropin-installer": "^1.4",
+		"pixelstudio/wp-sync-db": "^1.7",
+		"wpackagist-plugin/multisite-enhancements": "^1.6",
+		"wpackagist-plugin/wp-db-backup": "^2.5"
+	},
+	"require-dev": {
+		"figuren-theater/code-quality": "^0.4.5"
 	},
 	"repositories": [
 		{
-            "type": "git",
-            "url": "https://github.com/figuren-theater/ft-options"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/hrsetyono/wp-sync-db"
-        },
+			"type": "git",
+			"url": "https://github.com/figuren-theater/ft-options"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/hrsetyono/wp-sync-db"
+		},
 		{
 			"type": "composer",
-			"url" : "https://wpackagist.org"
+			"url": "https://wpackagist.org"
 		}
 	],
-	"require": {
-        "php": ">=7.1",
-        "figuren-theater/ft-options": "^1",
-		"johnbillion/query-monitor": "^3",
-		"johnbillion/wp-crontrol": "^1.15",
-		"pixelstudio/wp-sync-db": "^1.7",
-        "koodimonni/composer-dropin-installer": "^1.4",
-		"devgeniem/wp-cron-runner": "^1.0",
-        "wpackagist-plugin/multisite-enhancements": "^1.6",
-        "wpackagist-plugin/wp-db-backup":"^2.5"
+	"autoload": {
+		"classmap": [
+			"inc/"
+		],
+		"files": [
+			"inc/blog-management/namespace.php",
+			"inc/dashboard-widget/namespace.php",
+			"inc/mode/namespace.php",
+			"inc/multisite-enhancements/namespace.php",
+			"inc/query-monitor/namespace.php",
+			"inc/wp-crontrol/namespace.php",
+			"inc/wp-cron-runner/namespace.php",
+			"inc/wp-db-backup/namespace.php",
+			"inc/wp-sync-db/namespace.php",
+			"inc/namespace.php"
+		]
 	},
-    "extra": {
-        "altis": {
-            "install-overrides": [
-                "devgeniem/wp-cron-runner",
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true,
+			"koodimonni/composer-dropin-installer": true,
+			"phpstan/extension-installer": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"ergebnis/composer-normalize": true,
+			"figuren-theater/ft-core": true
+		}
+	},
+	"extra": {
+		"altis": {
+			"install-overrides": [
+				"devgeniem/wp-cron-runner",
 				"johnbillion/query-monitor",
 				"johnbillion/wp-crontrol",
 				"pixelstudio/wp-sync-db",
-                "wpackagist-plugin/multisite-enhancements",
-                "wpackagist-plugin/wp-db-backup"
-            ]
-        }
-    },
-	"config": {
-		"allow-plugins": {
-			"composer/installers": true
+				"wpackagist-plugin/multisite-enhancements",
+				"wpackagist-plugin/wp-db-backup"
+			]
 		}
 	}
 }
