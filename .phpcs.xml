@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <ruleset name="ft-maintenance">
 	<description>Coding standards for ft-maintenance</description>
-	<!--
-	<file>.</file> -->
+
+	<file>.</file>
 
 	<!--
 	<exclude-pattern>*/bin/*</exclude-pattern>
