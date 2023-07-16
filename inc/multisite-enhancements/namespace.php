@@ -31,6 +31,8 @@ function bootstrap() {
 
 /**
  * Conditionally load the plugin itself and its modifications.
+ *
+ * @return void
  */
 function load_plugin() {
 
@@ -59,8 +61,11 @@ function filter_options() {
 
 	$_options = [
 		'remove-logo'         => 1,
-		// this saves (Websites*2)-DB requests per Admin-Bar-ified page-load
-		// so: 20 Websites * 2 = 40 DB requests saved
+
+		/*
+		 * This saves (Websites*2)-DB requests per Admin-Bar-ified page-load
+		 * so: 20 Websites * 2 = 40 DB requests saved
+		 */
 		'add-favicon'         => 0,
 		'add-blog-id'         => 1,
 		'add-css'             => 1,
@@ -75,8 +80,10 @@ function filter_options() {
 		'delete-settings'     => 1,
 	];
 
-	// gets added to the 'OptionsCollection'
-	// from within itself on creation
+	/*
+	 * Gets added to the 'OptionsCollection'
+	 * from within itself on creation.
+	 */
 	new Options\Option(
 		'wpme_options',
 		$_options,

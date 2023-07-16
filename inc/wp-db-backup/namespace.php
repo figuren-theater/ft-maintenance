@@ -37,20 +37,25 @@ function bootstrap() {
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 9 );
 }
 
+/**
+ * Conditionally load the plugin itself and its modifications.
+ *
+ * @return void
+ */
 function load_plugin() {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
 	if ( ! $config['wp-db-backup'] ) {
-		return; // early
+		return;
 	}
 
-	require_once FT_VENDOR_DIR . PLUGINPATH;
+	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 0 );
 
 	add_filter( 'pre_option_wp_cron_backup_tables', __NAMESPACE__ . '\\get_prefixed_table_names', 20 );
 
-	// run only when visiting the "Impressum" Settings page
+	// Run only when visiting the "Impressum" Settings page.
 	add_action( 'admin_head-settings_page_impressum', __NAMESPACE__ . '\\save_backup_time' );
 }
 
@@ -62,8 +67,7 @@ function filter_options() {
 			'revisions' => [ $wpdb->prefix . 'posts' ],
 			'spam'      => [ $wpdb->prefix . 'comments' ],
 		],
-		// only needed for on-demand backup
-		// recipient email
+		// only needed for on-demand backup recipient email.
 		'wpdb_backup_recip'        => getenv( 'FT_MAINTAINANCE_WPDBBACKUP_EMAIL' ),
 		'wp_cron_backup_schedule'  => ( is_main_site() ) ? 'daily' : 'weekly',
 		// Disabled for PRIVACY concerns
@@ -74,13 +78,15 @@ function filter_options() {
 		// WHICH IS A PROBLEM FOR PRIVACY
 		// so we can only accept this ourselves.
 		//
-		// 'wp_cron_backup_recipient'  => ( is_main_site() ) ? self::RECIPIENT_EMAIL : \get_bloginfo( 'admin_email' ),
+		// 'wp_cron_backup_recipient'  => ( is_main_site() ) ? self::RECIPIENT_EMAIL : \get_bloginfo( 'admin_email' ), !
 		'wp_cron_backup_recipient' => getenv( 'FT_MAINTAINANCE_WPDBBACKUP_EMAIL' ),
 		'wp_cron_backup_tables'    => [], // will be set during admin-load
 	];
 
-	// gets added to the 'OptionsCollection'
-	// from within itself on creation
+	/*
+	 * Gets added to the 'OptionsCollection'
+	 * from within itself on creation.
+	 */
 	new Options\Factory(
 		$_options,
 		'Figuren_Theater\Options\Option',

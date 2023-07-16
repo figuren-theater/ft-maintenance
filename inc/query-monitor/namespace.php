@@ -34,6 +34,8 @@ function bootstrap() {
 
 /**
  * Conditionally load the plugin itself and its modifications.
+ *
+ * @return void
  */
 function load_plugin() {
 
