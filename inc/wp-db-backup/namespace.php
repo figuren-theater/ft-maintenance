@@ -95,7 +95,7 @@ function filter_options() :void {
 	new Options\Factory(
 		$_options,
 		'Figuren_Theater\Options\Option',
-		BASENAME,
+		BASENAME
 	);
 
 }
