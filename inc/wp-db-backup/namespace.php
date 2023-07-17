@@ -59,7 +59,12 @@ function load_plugin() {
 	add_action( 'admin_head-settings_page_impressum', __NAMESPACE__ . '\\save_backup_time' );
 }
 
-function filter_options() {
+/**
+ * Handle options
+ *
+ * @return void
+ */
+function filter_options() :void {
 	global $wpdb;
 
 	$_options = [
@@ -80,7 +85,7 @@ function filter_options() {
 		//
 		// 'wp_cron_backup_recipient'  => ( is_main_site() ) ? self::RECIPIENT_EMAIL : \get_bloginfo( 'admin_email' ), !
 		'wp_cron_backup_recipient' => getenv( 'FT_MAINTAINANCE_WPDBBACKUP_EMAIL' ),
-		'wp_cron_backup_tables'    => [], // will be set during admin-load
+		'wp_cron_backup_tables'    => [], // Will be set during admin-load, @see get_prefixed_table_names().
 	];
 
 	/*
