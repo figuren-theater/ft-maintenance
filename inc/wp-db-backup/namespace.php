@@ -72,9 +72,11 @@ function filter_options() :void {
 			'revisions' => [ $wpdb->prefix . 'posts' ],
 			'spam'      => [ $wpdb->prefix . 'comments' ],
 		],
+
 		// only needed for on-demand backup recipient email.
 		'wpdb_backup_recip'        => getenv( 'FT_MAINTAINANCE_WPDBBACKUP_EMAIL' ),
 		'wp_cron_backup_schedule'  => ( is_main_site() ) ? 'daily' : 'weekly',
+
 		// Disabled for PRIVACY concerns
 		//
 		// By default, the Plugins sends
@@ -97,7 +99,6 @@ function filter_options() :void {
 		'Figuren_Theater\Options\Option',
 		BASENAME
 	);
-
 }
 
 /**
@@ -179,7 +180,7 @@ function get_prefixed_table_names() : array {
  * located at ...plugins\wp-db-backup\wp-db-backup.php
  */
 function save_backup_time() {
-	// unschedule previous
+	// Unschedule the previous cron.
 	wp_clear_scheduled_hook( 'wp_db_backup_cron' );
 
 	$tomorrow_date       = date( 'Y-m-d', strtotime( 'tomorrow' ) );
@@ -194,7 +195,7 @@ function save_backup_time() {
 		return wp_schedule_event( $timestamp, $recurrence, 'wp_db_backup_cron' );
 
 	} catch ( Exception $WP_Error ) {
-		do_action( 'qm/error', $WP_Error );   // https://querymonitor.com/docs/logging-variables/
+		do_action( 'qm/error', $WP_Error ); // phpcs:ignore // https://querymonitor.com/docs/logging-variables/
 	}
 
 }
