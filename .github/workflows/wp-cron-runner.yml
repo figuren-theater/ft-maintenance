@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: cURL request
         # Hit the webhook endpoint to let WordPress do some routine jobs
-        # 
+        #
         # Add a job summary with the wp_die() output, the cron runner creates
         # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary
         run: curl "https://figuren.theater/run-cron" >> $GITHUB_STEP_SUMMARY

@@ -48,7 +48,11 @@ function load() {
 	require TEMPLATE;
 	die();
 }
-
+/**
+ * Load the plugin itself and its modifications.
+ *
+ * @return void
+ */
 function load_plugins() {
 
 	add_filter( 'plugin_row_meta', __NAMESPACE__ . '\\output_dropin_note', -10, 4 );
@@ -61,7 +65,7 @@ function load_plugins() {
  * @param string $file Plugin filename (sunrise.php for sunrise)
  * @param array  $data Data from the plugin header
  * @param string $status Status of the plugin
- * 
+ *
  * @return array Modified meta links
  */
 function output_dropin_note( $meta, $file, $data, $status ) {
@@ -71,7 +75,7 @@ function output_dropin_note( $meta, $file, $data, $status ) {
 	if ( ! in_array( $file, [ 'maintenance.php', 'php-error.php', 'db-error.php' ] ) )
 		return $meta;
 
-	$note = '<em>' . wp_kses( 
+	$note = '<em>' . wp_kses(
 		sprintf(
 			__( 'Enhanced by <a href="%1$s" title="%2$s">%3$s</a>', 'figurentheater' ),
 			'https://github.com/figuren-theater/ft-maintenance',
