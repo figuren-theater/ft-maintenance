@@ -113,11 +113,18 @@ function remove_menu() {
 
 	global $mywpdbbackup;
 
-	// Remove Submenu from 'Settings' and
-	// Submenu from 'Tools'
+	/*
+	 * Remove Submenu from 'Settings' and
+	 * Submenu from 'Tools'
+	 */
 	remove_action( 'admin_menu', [ $mywpdbbackup, 'admin_menu' ] );
 }
 
+/**
+ * Get the names of all (relevant) tables.
+ *
+ * @return string[]
+ */
 function get_prefixed_table_names() : array {
 
 	if ( is_main_site() ) {
