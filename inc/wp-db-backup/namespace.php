@@ -100,6 +100,12 @@ function filter_options() :void {
 
 }
 
+/**
+ * Show the admin-menu, only:
+ * - to super-administrators
+ *
+ * @return void
+ */
 function remove_menu() {
 	if ( current_user_can( 'manage_sites' ) ) {
 		return;
