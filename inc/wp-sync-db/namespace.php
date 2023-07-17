@@ -35,6 +35,8 @@ function bootstrap() :void {
 /**
  * Conditionally load the plugin itself and its modifications.
  *
+ * @TODO #29 Make path replacements dynamic.
+ *
  * @return void
  */
 function load_plugin() :void {
@@ -52,6 +54,11 @@ function load_plugin() :void {
 	add_action( 'network_admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 }
 
+/**
+ * Handle options
+ *
+ * @return void
+ */
 function filter_options() :void {
 
 	$_temp_key = ( 'local' === WP_ENVIRONMENT_TYPE ) ? 'fbCla6zyX/m9YK9/rBAG40npm71Y9bOc' : 'g3CqYqPZ5OSghQT1Fv7QAXqhy4BsXnf1';
