@@ -322,16 +322,16 @@
         },
         {
             "name": "johnbillion/wp-crontrol",
-            "version": "1.15.2",
+            "version": "1.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/wp-crontrol.git",
-                "reference": "e5cac03d75b55675fa4cda7ef851cd46e00f6b97"
+                "reference": "f29163dd1e63d9de0b5df8cf00d7000463a0d399"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/e5cac03d75b55675fa4cda7ef851cd46e00f6b97",
-                "reference": "e5cac03d75b55675fa4cda7ef851cd46e00f6b97",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/f29163dd1e63d9de0b5df8cf00d7000463a0d399",
+                "reference": "f29163dd1e63d9de0b5df8cf00d7000463a0d399",
                 "shasum": ""
             },
             "require": {
@@ -389,7 +389,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-15T17:54:20+00:00"
+            "time": "2023-06-30T17:32:12+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",
