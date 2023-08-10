@@ -7,8 +7,6 @@
 
 namespace Figuren_Theater\Maintenance\Mode;
 
-use FT_MAINTENANCE_MODE;
-
 use function add_action;
 use function add_filter;
 use function current_user_can;
@@ -25,7 +23,7 @@ const TEMPLATE = __DIR__ . '/error-template.php';
  */
 function bootstrap() :void {
 
-	if ( defined( 'FT_MAINTENANCE_MODE' ) && FT_MAINTENANCE_MODE ) {
+	if ( defined( 'FT_MAINTENANCE_MODE' ) && \constant( 'FT_MAINTENANCE_MODE' ) ) {
 		add_action( 'set_current_user', __NAMESPACE__ . '\\load', -1000 );
 	}
 
@@ -67,14 +65,14 @@ function load_plugins() {
 /**
  * Add note to [maintenance, php-error, db-error].php on dropins list
  *
- * @param array  $meta Meta links
- * @param string $file Plugin filename (sunrise.php for sunrise)
- * @param array  $data Data from the plugin header
- * @param string $status Status of the plugin
+ * @param string[]  $meta Meta links
+ * @param string    $file Plugin filename (sunrise.php for sunrise)
+ * @param string[]  $data Data from the plugin header
+ * @param string    $status Status of the plugin
  *
- * @return array Modified meta links
+ * @return string[] Modified meta links
  */
-function output_dropin_note( $meta, $file, $data, $status ) {
+function output_dropin_note( array $meta, string $file, array $data, string $status ) :array {
 	if ( 'dropins' !== $status ) {
 		return $meta;
 	}

@@ -39,12 +39,12 @@ function load() :void {
  * @package [package]
  * @since   2.10
  *
- * @param   array     $tables  [description]
+ * @param   string[]  $tables  [description]
  * @param   int       $site_id [description]
  *
- * @return  array              Tables to delete (in addition to the WP default).
+ * @return  string[]  Tables to delete (in addition to the WP default).
  */
-function wpmu_drop_tables( array $tables, int $site_id ) : array {
+function wpmu_drop_tables( array $tables, int $site_id ) :array {
 
 	global $wpdb;
 

@@ -31,7 +31,7 @@ $server_name     = getenv( 'SERVER_NAME' );
 $request_uri     = getenv( 'REQUEST_URI' );
 
 // Information protocol of incoming request.
-if ( ! isset( $server_protocol ) ) {
+if ( empty( $server_protocol ) ) {
 	$server_protocol = 'HTTP/1.1';
 }
 defined( 'FT_ERROR_STATUS' ) || define( 'FT_ERROR_STATUS', '503 Service Temporarily Unavailable' );
@@ -67,7 +67,7 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \cons
 		}
 
 		// Server name.
-		if ( isset( $server_name ) ) {
+		if ( ! empty( $server_name ) ) {
 			$server_name = filter_var(
 				stripslashes(
 					$server_name
@@ -79,7 +79,7 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \cons
 		}
 
 		// Request URI.
-		if ( isset( $request_uri ) ) {
+		if ( ! empty( $request_uri ) ) {
 			$request_uri = filter_var(
 				stripslashes(
 					$request_uri
