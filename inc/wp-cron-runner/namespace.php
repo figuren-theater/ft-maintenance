@@ -20,8 +20,10 @@ const PLUGINPATH = '/devgeniem/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'muplugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }

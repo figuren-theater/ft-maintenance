@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Maintenance Dashboard_Widget.
  *
- * @package figuren-theater/maintenance/dashboard_widget
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\Dashboard_Widget;
@@ -12,20 +12,22 @@ use function add_action;
 use function balanceTags;
 use function current_user_can;
 use function wp_add_dashboard_widget;
-use WP_CONTENT_DIR;
 use WP_DEBUG_LOG;
 
-// // const VIEW = ( defined( 'WP_DEBUG' ) ) ? 'debug' : 'error';
+// const VIEW = ( defined( 'WP_DEBUG' ) ) ? 'debug' : 'error';
+const VIEW = 'error';
 // const VIEW = 'debugORerror';
-// const FILE = '/logs/php.' . VIEW . '.log';
+const FILE = '/logs/php.' . VIEW . '.log';
 
-// const LOG = \WP_CONTENT_DIR . FILE;
-// // const LOG = \WP_DEBUG_LOG;
+// const LOG = constant( 'WP_CONTENT_DIR' ) . FILE;
+const LOG = \WP_DEBUG_LOG;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 	add_action( 'wp_network_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
@@ -37,13 +39,16 @@ function add_widget() {
 		return;
 	}
 
+	/*
+	 * Wrap title in sourrounding span
+	 *
+	 * which helps preventing a layout bug with WordPress
+	 * default '.postbox-header .hndle' class
+	 * which sets: "justify-content: space-between;"
+	 */
 	wp_add_dashboard_widget(
 		'cbstdsys-php-errorlog',
-		// 'Debug Log (/wp-content/logs/php.debug.log)',
 		sprintf(
-			// the sourrounding span helps preventing a layout bug with WordPress
-			// default '.postbox-header .hndle' class
-			// which sets: "justify-content: space-between;"
 			'<span>%s Log (%s)</span>',
 			ucfirst( VIEW ),
 			'<abbr title="' . LOG . '">...' . FILE . '</abbr>'
@@ -53,30 +58,33 @@ function add_widget() {
 }
 
 /**
- *  @todo  clean this up even more. This is still a mess from 1995.
  *
- *  server monitoring as dashboard widget
- *  reads php_error.log or debug.log if WP_DEBUG is TRUE
+ * Log-file monitoring as dashboard widget
+ *
+ * Reads and displays the first x (1000 by default) lines from php_error.log
+ * or debug.log if WP_DEBUG is enabled.
+ *
+ *  @todo  clean this up even more. This is still a mess from 1995.
  *
  *  @since 0.0.1
  */
 function render_widget() {
 
-	// The maximum number of errors to display in the widget
-	$displayErrorsLimit = 1000;
+	// The maximum number of errors to display in the widget.
+	$error_display_limit = 1000;
 
-	// The maximum number of characters to display for each error
-	$errorLengthLimit = 1000;
+	// The maximum number of characters to display for each error.
+	$error_length_limit = 1000;
 
-	$fileCleared = false;
+	$file_cleared = false;
 
 	// Clear file?
-	if ( isset( $_GET['cbstdsys-php-errorlog'] ) && $_GET['cbstdsys-php-errorlog'] == 'clear' ) {
+	if ( isset( $_GET['cbstdsys-php-errorlog'] ) && $_GET['cbstdsys-php-errorlog'] === 'clear' ) {
 		$handle = fopen( LOG, 'w' );
 		fclose( $handle );
-		$fileCleared = true;
+		$file_cleared = true;
 	}
-	// Read file
+	// Read from file.
 	if ( ! file_exists( LOG ) ) {
 		echo '<p><em>There was a problem reading the error log file.</em></p>';
 	}
@@ -84,7 +92,7 @@ function render_widget() {
 	$errors = file( LOG );
 	$errors = array_reverse( $errors );
 
-	if ( $fileCleared ) {
+	if ( $file_cleared ) {
 		echo '<p><em>File cleared.</em></p>';
 	}
 
@@ -93,12 +101,11 @@ function render_widget() {
 	}
 
 	echo '<p>' . count( $errors ) . ' error';
-	if ( $errors != 1 ) {
+	if ( $errors !== 1 ) {
 		echo 's';
 	}
 	echo '.';
 
-	// echo ' [ <b><a href="'.admin_url('?cbstdsys-php-errorlog=clear').'" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo ' [ <b><a href="?cbstdsys-php-errorlog=clear" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo '</p>';
 
@@ -109,15 +116,15 @@ function render_widget() {
 	foreach ( $errors as $error ) {
 		$error = esc_html( $error );
 		echo '<li style="padding:2px 4px 6px;border-bottom:1px solid #ececec;">';
-		$errorOutput = preg_replace( '/\[([^\]]+)\]/', '<b>[$1]</b>', $error, 1 );
-		if ( strlen( $errorOutput ) > $errorLengthLimit ) {
-			$errorOutput = substr( $errorOutput, 0, $errorLengthLimit ) . ' [&hellip;]';
+		$error_output = preg_replace( '/\[([^\]]+)\]/', '<b>[$1]</b>', $error, 1 );
+		if ( strlen( $error_output ) > $error_length_limit ) {
+			$error_output = substr( $error_output, 0, $error_length_limit ) . ' [&hellip;]';
 		}
-		echo balanceTags( $errorOutput, true );
+		echo esc_html( balanceTags( $error_output, true ) );
 		echo '</li>';
 		$i++;
-		if ( $i > $displayErrorsLimit ) {
-			echo '<li class="howto">More than ' . $displayErrorsLimit . ' errors in log...</li>';
+		if ( $i > $error_display_limit ) {
+			echo esc_html( '<li class="howto">More than ' . $error_display_limit . ' errors in log...</li>' );
 			break;
 		}
 	}

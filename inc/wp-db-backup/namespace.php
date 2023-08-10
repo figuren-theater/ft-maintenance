@@ -2,13 +2,13 @@
 /**
  * Figuren_Theater Maintenance WP_DB_Backup.
  *
- * @package figuren-theater/maintenance/wp_db_backup
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\WP_DB_Backup;
 
+use Exception;
 use Figuren_Theater;
-
 use Figuren_Theater\Options;
 use FT_VENDOR_DIR;
 use function add_action;
@@ -29,8 +29,10 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -42,7 +44,7 @@ function bootstrap() {
  *
  * @return void
  */
-function load_plugin() {
+function load_plugin() :void {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
 	if ( ! $config['wp-db-backup'] ) {
@@ -107,7 +109,7 @@ function filter_options() :void {
  *
  * @return void
  */
-function remove_menu() {
+function remove_menu() :void {
 	if ( current_user_can( 'manage_sites' ) ) {
 		return;
 	}
@@ -186,16 +188,16 @@ function save_backup_time() {
 	$tomorrow_date       = date( 'Y-m-d', strtotime( 'tomorrow' ) );
 	$registered_datetime = get_blog_details( null, false )->registered;
 
-	list( $registered_date, $registered_time ) = explode( ' ', $registered_datetime );
+	$registered_datetime = explode( ' ', $registered_datetime );
 
-	$timestamp  = strtotime( $tomorrow_date . $registered_time );
+	$timestamp  = strtotime( $tomorrow_date . $registered_datetime[1] );
 	$recurrence = get_option( 'wp_cron_backup_schedule' );
 
 	try {
 		return wp_schedule_event( $timestamp, $recurrence, 'wp_db_backup_cron' );
 
-	} catch ( Exception $WP_Error ) {
-		do_action( 'qm/error', $WP_Error ); // phpcs:ignore // https://querymonitor.com/docs/logging-variables/
+	} catch ( Exception $wp_error ) {
+		do_action( 'qm/error', $wp_error ); // See https://querymonitor.com/docs/logging-variables/ for more examples.
 	}
 
 }

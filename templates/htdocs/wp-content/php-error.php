@@ -19,7 +19,7 @@
  * 3. Send a Retry-After header to tell the client when to try again (specified in seconds)
  * 4. (Suppress Email)
  *
- * @package Figuren_Theater
+ * @package figuren-theater/ft-maintenance
  * @since   2.10.17
  * @author  Carsten Bach  <mail@carsten-bach.de>
  */

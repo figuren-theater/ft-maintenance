@@ -2,50 +2,56 @@
 /**
  * Figuren_Theater Maintenance Mode.
  *
- * @package figuren-theater/maintenance/mode
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\Mode;
 
-use FT_ERROR_MAIL_FROM;
-use FT_ERROR_MAIL_INTERVAL;
-use FT_ERROR_MAIL_TO;
-use FT_ERROR_SUPPRESS_EMAIL;
-
 use FT_MAINTENANCE_MODE;
 
-use function __;
 use function add_action;
 use function add_filter;
 use function current_user_can;
 use function esc_html__;
 use function wp_kses;
+use function __;
 
 const TEMPLATE = __DIR__ . '/error-template.php';
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
-	if ( defined( 'FT_MAINTENANCE_MODE' ) && FT_MAINTENANCE_MODE )
+	if ( defined( 'FT_MAINTENANCE_MODE' ) && FT_MAINTENANCE_MODE ) {
 		add_action( 'set_current_user', __NAMESPACE__ . '\\load', -1000 );
+	}
 
 	add_action( 'load-plugins.php', __NAMESPACE__ . '\\load_plugins' );
 }
 
-// Activate WordPress Maintenance Mode
-function load() {
+/**
+ * Activate WordPress Maintenance Mode
+ *
+ * ...if the currently logged-in user is not allowed
+ * to switch themes or let's say is not an administrator.
+ *
+ * @return void
+ */
+function load() :void {
 
-	if ( current_user_can( 'switch_themes' ) )
+	if ( current_user_can( 'switch_themes' ) ) {
 		return;
+	}
 
 	define( 'FT_ERROR_MAIL_TO', 'f.t web-Crew <' . getenv( 'FT_ERROR_MAIL_TO' ) . '>' );
 	define( 'FT_ERROR_MAIL_FROM', getenv( 'FT_ERROR_MAIL_TO' ) );
 	define( 'FT_ERROR_MAIL_INTERVAL', 300 );
 	define( 'FT_ERROR_SUPPRESS_EMAIL', true );
 
-	require TEMPLATE;
+	require TEMPLATE; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 	die();
 }
 /**
@@ -69,11 +75,13 @@ function load_plugins() {
  * @return array Modified meta links
  */
 function output_dropin_note( $meta, $file, $data, $status ) {
-	if ( 'dropins' !== $status )
+	if ( 'dropins' !== $status ) {
 		return $meta;
+	}
 
-	if ( ! in_array( $file, [ 'maintenance.php', 'php-error.php', 'db-error.php' ] ) )
+	if ( ! in_array( $file, [ 'maintenance.php', 'php-error.php', 'db-error.php' ], true ) ) {
 		return $meta;
+	}
 
 	$note = '<em>' . wp_kses(
 		sprintf(

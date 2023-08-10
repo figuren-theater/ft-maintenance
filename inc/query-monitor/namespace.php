@@ -26,6 +26,8 @@ const PLUGINPATH = '/johnbillion/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
 function bootstrap() {
 
