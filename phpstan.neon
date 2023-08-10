@@ -1,7 +1,10 @@
 #$ vendor/bin/phpstan analyze
-
+includes:
+    # Include this extension, if not already autoloaded via composer
+    # - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: max
+    # had to leave level:max after reading this: https://github.com/phpstan/phpstan/issues/5927
+    level: 8
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - inc/
@@ -15,7 +18,17 @@ parameters:
             # and not running within ft-platform
             - wp-content/
             - tests/
+    # @todo #37 Find a nicer way instead of ignoring this Error on every ft-module
     ignoreErrors:
-		# @todo #37 Find a nicer way instead of ignoring this Error on every ft-module
+        - '#Constant WP_CONTENT_DIR not found\.#'
+        - '#Constant WPMU_PLUGIN_URL not found\.#'
+        - '#Constant DISABLE_WP_CRON not found\.#'
+        - '#Constant WP_ENVIRONMENT_TYPE not found\.#'
         - '#Function Altis\\register_module not found\.#'
         - '#Function Figuren_Theater\\get_config not found\.#'
+
+    # allow constants to have different values in different environments
+    # to prevent errors like: "Right side of && is always false."
+    # @see https://phpstan.org/config-reference#constants
+    dynamicConstantNames:
+        - FT_MAINTENANCE_MODE
