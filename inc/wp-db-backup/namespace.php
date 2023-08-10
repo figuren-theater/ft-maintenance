@@ -2,13 +2,13 @@
 /**
  * Figuren_Theater Maintenance WP_DB_Backup.
  *
- * @package figuren-theater/maintenance/wp_db_backup
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\WP_DB_Backup;
 
+use Exception;
 use Figuren_Theater;
-
 use Figuren_Theater\Options;
 use FT_VENDOR_DIR;
 use function add_action;
@@ -29,8 +29,10 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -42,7 +44,7 @@ function bootstrap() {
  *
  * @return void
  */
-function load_plugin() {
+function load_plugin() :void {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
 	if ( ! $config['wp-db-backup'] ) {
@@ -72,9 +74,11 @@ function filter_options() :void {
 			'revisions' => [ $wpdb->prefix . 'posts' ],
 			'spam'      => [ $wpdb->prefix . 'comments' ],
 		],
+
 		// only needed for on-demand backup recipient email.
 		'wpdb_backup_recip'        => getenv( 'FT_MAINTAINANCE_WPDBBACKUP_EMAIL' ),
 		'wp_cron_backup_schedule'  => ( is_main_site() ) ? 'daily' : 'weekly',
+
 		// Disabled for PRIVACY concerns
 		//
 		// By default, the Plugins sends
@@ -95,23 +99,35 @@ function filter_options() :void {
 	new Options\Factory(
 		$_options,
 		'Figuren_Theater\Options\Option',
-		BASENAME,
+		BASENAME
 	);
-
 }
 
-function remove_menu() {
+/**
+ * Show the admin-menu, only:
+ * - to super-administrators
+ *
+ * @return void
+ */
+function remove_menu() :void {
 	if ( current_user_can( 'manage_sites' ) ) {
 		return;
 	}
 
 	global $mywpdbbackup;
 
-	// Remove Submenu from 'Settings' and
-	// Submenu from 'Tools'
+	/*
+	 * Remove Submenu from 'Settings' and
+	 * Submenu from 'Tools'
+	 */
 	remove_action( 'admin_menu', [ $mywpdbbackup, 'admin_menu' ] );
 }
 
+/**
+ * Get the names of all (relevant) tables.
+ *
+ * @return string[]
+ */
 function get_prefixed_table_names() : array {
 
 	if ( is_main_site() ) {
@@ -153,6 +169,8 @@ function get_prefixed_table_names() : array {
 /**
  * Shedule WP_Cron for DB backups
  *
+ * Saves the scheduled time for a database backup cron job.
+ *
  * Because none of the normal Admins is
  * (per design of the plugin)
  * allowed to do backups manually.
@@ -164,24 +182,55 @@ function get_prefixed_table_names() : array {
  * Mainly cloned from the inside of
  * wpdbBackup->save_backup_time()
  * located at ...plugins\wp-db-backup\wp-db-backup.php
+ *
+ * This function unschedules the previous cron job for database backup and then schedules
+ * a new cron job for the next day based on the registered datetime of the site. The recurrence
+ * interval for the cron job is retrieved from the 'wp_cron_backup_schedule' option. If scheduling
+ * the new cron job is successful, the function returns true. If an exception occurs during the
+ * scheduling process, an error action is triggered and false is returned.
+ *
+ * @return void
  */
-function save_backup_time() {
-	// unschedule previous
+function save_backup_time() :void {
+	// Unschedule the previous cron job for database backup.
 	wp_clear_scheduled_hook( 'wp_db_backup_cron' );
 
-	$tomorrow_date       = date( 'Y-m-d', strtotime( 'tomorrow' ) );
-	$registered_datetime = get_blog_details( null, false )->registered;
+	// Get the site details using get_blog_details.
+	$site_details = get_blog_details( null, false );
 
-	list( $registered_date, $registered_time ) = explode( ' ', $registered_datetime );
-
-	$timestamp  = strtotime( $tomorrow_date . $registered_time );
-	$recurrence = get_option( 'wp_cron_backup_schedule' );
-
-	try {
-		return wp_schedule_event( $timestamp, $recurrence, 'wp_db_backup_cron' );
-
-	} catch ( Exception $WP_Error ) {
-		do_action( 'qm/error', $WP_Error );   // https://querymonitor.com/docs/logging-variables/
+	// Check if the site_details is a WP_Site object,
+	// otherwise exit early.
+	if ( ! $site_details instanceof \WP_Site ) {
+		return;
 	}
 
+	// Get the registered datetime of the site as a string.
+	$registered_datetime_string = $site_details->registered;
+
+	// Create a DateTime object from the registered datetime string.
+	$registered_datetime = new \DateTime( $registered_datetime_string );
+
+	// Get tomorrow's date and time for the scheduled backup.
+	$tomorrow = new \DateTime( 'tomorrow' );
+
+	// Set the time component of registered datetime to tomorrow's time.
+	$timestamp = $tomorrow->setTime(
+		(int) $registered_datetime->format( 'H' ),
+		(int) $registered_datetime->format( 'i' )
+	);
+
+	// Calculate the timestamp for the next scheduled backup.
+	$timestamp = $timestamp->getTimestamp();
+
+	// Get the recurrence interval for the cron job.
+	$recurrence = (string) get_option( 'wp_cron_backup_schedule' );
+
+	try {
+		// Schedule a new cron job for the specified time and recurrence.
+		wp_schedule_event( $timestamp, $recurrence, 'wp_db_backup_cron' );
+	} catch ( Exception $wp_error ) {
+		// If an exception occurs, trigger an error action and return false.
+		do_action( 'qm/error', $wp_error ); // See https://querymonitor.com/docs/logging-variables/ for more examples.
+	}
 }
+

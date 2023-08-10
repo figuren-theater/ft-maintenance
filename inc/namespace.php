@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Maintenance.
  *
- * @package figuren-theater/maintenance
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance;
@@ -15,8 +15,10 @@ use WP_ENVIRONMENT_TYPE;
 
 /**
  * Register module.
+ *
+ * @return void
  */
-function register() {
+function register() :void {
 
 	$default_settings = [
 		'enabled'        => true, // Needs to be set.
@@ -42,8 +44,10 @@ function register() {
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	// Plugins.
 	Multisite_Enhancements\bootstrap();

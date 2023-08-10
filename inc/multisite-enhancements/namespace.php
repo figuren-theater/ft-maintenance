@@ -20,8 +20,10 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -34,7 +36,7 @@ function bootstrap() {
  *
  * @return void
  */
-function load_plugin() {
+function load_plugin() :void {
 
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
@@ -45,19 +47,45 @@ function load_plugin() {
 	add_filter( 'load_textdomain_mofile', __NAMESPACE__ . '\\unload_i18n', 0, 2 );
 }
 
-function unload_plugin_ui() {
+/**
+ * Disable the Plugin UI
+ *
+ * @return void
+ */
+function unload_plugin_ui() :void {
 
 	remove_action( 'init', [ 'Multisite_Enhancements_Settings', 'init' ] );
 }
 
+/**
+ * Unloads the specified MO file for localization based on the domain.
+ *
+ * This function unloads the specified MO file for localization based on the provided domain.
+ * If the domain is 'multisite-enhancements', the function returns an empty string, effectively
+ * preventing the MO file from being loaded. Otherwise, the function returns the original MO file path.
+ *
+ * @param string $mofile The path to the MO file for localization.
+ * @param string $domain The domain associated with the localization.
+ * 
+ * @return string The path to the MO file or an empty string if unloading is needed.
+ */
 function unload_i18n( string $mofile, string $domain ) : string {
+	// Check if the domain is 'multisite-enhancements'.
 	if ( 'multisite-enhancements' === $domain ) {
+		// If the domain is 'multisite-enhancements', prevent loading and return an empty string.
 		return '';
 	}
+
+	// If the domain is not 'multisite-enhancements', return the original MO file path.
 	return $mofile;
 }
 
-function filter_options() {
+/**
+ * Handle options
+ *
+ * @return void
+ */
+function filter_options() :void {
 
 	$_options = [
 		'remove-logo'         => 1,

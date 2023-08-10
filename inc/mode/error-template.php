@@ -1,33 +1,37 @@
-<?php
+<?php // phpcs:ignore PSR1.Files.SideEffects.FoundWithSymbols
 /**
  * Smart WP db-error.php, php-error.php and maintenance.php
  *
- * @package Smart_errors
+ * @source Smart_errors
  * @version 1.0.6
- *
  * @copyright 2017-2018 Alexandros Kozak
  * @license GPLv2 (or later)
+ *
+ * @package figuren-theater/ft-maintenance
  */
 
-namespace Figuren_Theater\Maintenance\Mode;
+namespace Figuren_Theater\Maintenance\Mode; // phpcs:ignore HM.Files.NamespaceDirectoryName.NameMismatch
+
+use function esc_url;
 
 use WPMU_PLUGIN_URL;
 
+// @todo #38 Replace hard-coded path
 const ASSETS = WPMU_PLUGIN_URL . '/FT/ft-maintenance/assets/';
 
-
-
-// Die silently if smart-errors.php has been accessed directly.
+// Die silently if error-template.php has been accessed directly.
 if ( ! defined( 'FT_ERROR_MAIL_FROM' )
 	|| ! defined( 'FT_ERROR_MAIL_TO' )
 	|| ! defined( 'FT_ERROR_MAIL_INTERVAL' ) ) {
 	die();
 }
 
+$server_protocol = getenv( 'SERVER_PROTOCOL' );
+$server_name     = getenv( 'SERVER_NAME' );
+$request_uri     = getenv( 'REQUEST_URI' );
+
 // Information protocol of incoming request.
-if ( isset( $_SERVER['SERVER_PROTOCOL'] ) ) {
-	$server_protocol = $_SERVER['SERVER_PROTOCOL'];
-} else {
+if ( empty( $server_protocol ) ) {
 	$server_protocol = 'HTTP/1.1';
 }
 defined( 'FT_ERROR_STATUS' ) || define( 'FT_ERROR_STATUS', '503 Service Temporarily Unavailable' );
@@ -37,16 +41,18 @@ header( 'Status: ' . FT_ERROR_STATUS );
 header( 'Retry-After: 600' );
 $touched = false;
 $lock    = __DIR__ . DIRECTORY_SEPARATOR . 'smart-errors.lock';
+
 // When db-error.php is accessed directly, only show the message; do not e-mail.
-if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SUPPRESS_ERROR_EMAIL ) ) {
+if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \constant( 'FT_SUPPRESS_ERROR_EMAIL' ) ) ) {
 
 	// If lock exists and is older than the alert interval, delete it.
 	if ( file_exists( $lock ) ) {
 		if ( time() - filectime( $lock ) > FT_ERROR_MAIL_INTERVAL ) {
-			unlink( $lock );
+			unlink( $lock ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_unlink
 		}
 
-	// Otherwise try to create the lock; if successful, send the alert e-mail.
+		// Otherwise try to create the lock; if successful, send the alert e-mail.
+		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_touch
 	} elseif ( touch( $lock ) ) {
 		$touched = true;
 		$headers = 'From: ' . FT_ERROR_MAIL_FROM . "\n" .
@@ -61,19 +67,25 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 		}
 
 		// Server name.
-		if ( isset( $_SERVER['SERVER_NAME'] ) ) {
-			$server_name = filter_var( stripslashes(
-				$_SERVER['SERVER_NAME']                       // Input var okay.
-			), FILTER_SANITIZE_URL );
+		if ( ! empty( $server_name ) ) {
+			$server_name = filter_var(
+				stripslashes(
+					$server_name
+				),
+				FILTER_SANITIZE_URL
+			);
 		} else {
 			$server_name = '';
 		}
 
 		// Request URI.
-		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-			$request_uri = filter_var( stripslashes(
-				$_SERVER['REQUEST_URI']                   // Input var okay.
-			), FILTER_SANITIZE_URL );
+		if ( ! empty( $request_uri ) ) {
+			$request_uri = filter_var(
+				stripslashes(
+					$request_uri
+				),
+				FILTER_SANITIZE_URL
+			);
 		} else {
 			$request_uri = '';
 		}
@@ -83,7 +95,12 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 			'The database error occurred when someone tried to open this page: '
 			. $web_protocol . '://' . $server_name . $request_uri . "\n";
 		$subject = 'Database error at ' . $server_name;
-		mail( FT_ERROR_MAIL_TO, $subject, $message, $headers );
+		mail( // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_mail_mail
+			FT_ERROR_MAIL_TO,
+			$subject,
+			$message,
+			$headers
+		);
 	}
 }
 ?>
@@ -93,9 +110,8 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 <head>
 	<meta name="robots" content="noindex">
 	<title>Umbaupause</title>
-
-		<link rel="stylesheet" type="text/css" href="<?php echo ASSETS . 'css/twentytwenty-style.min.css' ?>">
-
+	<?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ASSETS . 'css/twentytwenty-style.min.css' ); ?>">
 	<style>
 		body {
 			background-color: #000;
@@ -103,7 +119,6 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 		}
 
 		#wrapper {
-			/*margin: auto;*/
 			display: grid;
 			place-items: center;  /* https://1linelayouts.glitch.me/ */
 
@@ -111,7 +126,6 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 		}
 
 		#error {
-			/*max-width: 600px;*/
 			width: clamp(30ch, 50%, 76ch);  /* https://1linelayouts.glitch.me/ */
 			padding: 5%;
 			background-color: #fff;
@@ -127,8 +141,6 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 
 		#credits {
 			padding: 10px 5% 10px 5%;
-		/*	background-color: #000;
-			text-align: center;*/
 		}
 		.social-menu {
 			justify-content: center;
@@ -136,18 +148,6 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 		.footer-social a {
 			background-color: #d20394;
 		}
-/*
-		#credits small {
-			font-size: larger;
-		}
-
-		#credits a {
-			color: #fff;
-		}
-
-		#credits a:hover {
-			color: #e399a7;
-		}*/
 		</style>
 
 	</head>
@@ -180,6 +180,4 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! FT_SU
 	</body>
 </html>
 <?php
-
-// exit();
 die();

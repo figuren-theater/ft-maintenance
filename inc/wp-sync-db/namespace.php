@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Maintenance WP_Sync_DB.
  *
- * @package figuren-theater/maintenance/wp_sync_db
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\WP_Sync_DB;
@@ -14,10 +14,9 @@ use Figuren_Theater\Options;
 use FT_VENDOR_DIR;
 use function add_action;
 use function add_filter;
-
 use function get_sites;
+use function wp_get_environment_type;
 use function wp_list_pluck;
-use WP_ENVIRONMENT_TYPE;
 
 const BASENAME   = 'wp-sync-db/wp-sync-db.php';
 const PLUGINPATH = '/pixelstudio/' . BASENAME;
@@ -35,7 +34,7 @@ function bootstrap() :void {
 /**
  * Conditionally load the plugin itself and its modifications.
  *
- * @TODO #29 Make path replacements dynamic.
+ * @todo #29 Make path replacements dynamic.
  *
  * @return void
  */
@@ -57,11 +56,13 @@ function load_plugin() :void {
 /**
  * Handle options
  *
+ * @todo #36 Avoid hard-coded hashes
+ *
  * @return void
  */
 function filter_options() :void {
 
-	$_temp_key = ( 'local' === WP_ENVIRONMENT_TYPE ) ? 'fbCla6zyX/m9YK9/rBAG40npm71Y9bOc' : 'g3CqYqPZ5OSghQT1Fv7QAXqhy4BsXnf1';
+	$_temp_key = ( 'local' === wp_get_environment_type() ) ? 'fbCla6zyX/m9YK9/rBAG40npm71Y9bOc' : 'g3CqYqPZ5OSghQT1Fv7QAXqhy4BsXnf1';
 
 	$_options = [
 		'max_request' => 1048576,

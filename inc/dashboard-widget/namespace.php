@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Maintenance Dashboard_Widget.
  *
- * @package figuren-theater/maintenance/dashboard_widget
+ * @package figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance\Dashboard_Widget;
@@ -12,79 +12,125 @@ use function add_action;
 use function balanceTags;
 use function current_user_can;
 use function wp_add_dashboard_widget;
-use WP_CONTENT_DIR;
-use WP_DEBUG_LOG;
 
-// // const VIEW = ( defined( 'WP_DEBUG' ) ) ? 'debug' : 'error';
-// const VIEW = 'debugORerror';
-// const FILE = '/logs/php.' . VIEW . '.log';
+/**
+ * Get name of log file to show, depending on WP_DEBUG set or not.
+ *
+ * @return string
+ */
+function get_logfile_type() :string {
+	return ( defined( 'WP_DEBUG' ) ) ? 'debug' : 'error';
+}
 
-// const LOG = \WP_CONTENT_DIR . FILE;
-// // const LOG = \WP_DEBUG_LOG;
+/**
+ * Get location of logfile relative to "wp-content" directory.
+ *
+ * @return string
+ */
+function get_logfile_location() :string {
+	return \sprintf(
+		'/logs/php.%s.log',
+		get_logfile_type()
+	);
+}
+
+/**
+ * Get full absolute path of relevant logfile.
+ *
+ * @return string
+ */
+function get_logfile_path() :string {
+	return \WP_CONTENT_DIR . get_logfile_location();
+}
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 	add_action( 'wp_network_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 }
 
-function add_widget() {
+/**
+ * Adds a new dashboard widget with the currently relevant log file.
+ *
+ * @return void
+ */
+function add_widget() :void {
 
 	if ( ! current_user_can( 'manage_sites' ) ) {
 		return;
 	}
 
+	/*
+	 * Wrap title in sourrounding span
+	 *
+	 * which helps preventing a layout bug with WordPress
+	 * default '.postbox-header .hndle' class
+	 * which sets: "justify-content: space-between;"
+	 */
 	wp_add_dashboard_widget(
 		'cbstdsys-php-errorlog',
-		// 'Debug Log (/wp-content/logs/php.debug.log)',
-		sprintf(
-			// the sourrounding span helps preventing a layout bug with WordPress
-			// default '.postbox-header .hndle' class
-			// which sets: "justify-content: space-between;"
+		\sprintf(
 			'<span>%s Log (%s)</span>',
-			ucfirst( VIEW ),
-			'<abbr title="' . LOG . '">...' . FILE . '</abbr>'
+			\ucfirst( get_logfile_type() ),
+			'<abbr title="' . get_logfile_path() . '">...' . get_logfile_location() . '</abbr>'
 		),
 		__NAMESPACE__ . '\\render_widget'
 	);
 }
 
 /**
- *  @todo  clean this up even more. This is still a mess from 1995.
  *
- *  server monitoring as dashboard widget
- *  reads php_error.log or debug.log if WP_DEBUG is TRUE
+ * Log-file monitoring as dashboard widget
  *
- *  @since 0.0.1
+ * Reads and displays the first x (1000 by default) lines from php_error.log
+ * or debug.log if WP_DEBUG is enabled.
+ *
+ * @todo  clean this up even more. This is still a mess from 1995.
+ *
+ * @since 0.0.1
+ *
+ * @return void
  */
-function render_widget() {
+function render_widget() :void {
 
-	// The maximum number of errors to display in the widget
-	$displayErrorsLimit = 1000;
+	// The maximum number of errors to display in the widget.
+	$error_display_limit = 1000;
 
-	// The maximum number of characters to display for each error
-	$errorLengthLimit = 1000;
+	// The maximum number of characters to display for each error.
+	$error_length_limit = 1000;
 
-	$fileCleared = false;
+	$file_cleared = false;
 
-	// Clear file?
-	if ( isset( $_GET['cbstdsys-php-errorlog'] ) && $_GET['cbstdsys-php-errorlog'] == 'clear' ) {
-		$handle = fopen( LOG, 'w' );
-		fclose( $handle );
-		$fileCleared = true;
+	$wp_debug_log = get_logfile_path();
+
+	if ( empty( $wp_debug_log ) ) {
+		return;
 	}
-	// Read file
-	if ( ! file_exists( LOG ) ) {
+
+	// Clear file.
+	// TODO #39 Fix "Processing form data without nonce verification." (WordPress.Security.NonceVerification.Recommended) !
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( isset( $_GET['cbstdsys-php-errorlog'] ) && $_GET['cbstdsys-php-errorlog'] === 'clear' ) {
+		$handle = fopen( $wp_debug_log, 'w' );
+		if ( false !== $handle ) {
+			fclose( $handle );
+			$file_cleared = true;
+		}
+	}
+	// Read from file.
+	if ( ! file_exists( $wp_debug_log ) ) {
 		echo '<p><em>There was a problem reading the error log file.</em></p>';
 	}
 
-	$errors = file( LOG );
+	$errors = (array) file( $wp_debug_log );
 	$errors = array_reverse( $errors );
 
-	if ( $fileCleared ) {
+	if ( $file_cleared ) {
 		echo '<p><em>File cleared.</em></p>';
 	}
 
@@ -93,12 +139,12 @@ function render_widget() {
 	}
 
 	echo '<p>' . count( $errors ) . ' error';
-	if ( $errors != 1 ) {
+	if ( count( $errors ) > 1 ) {
 		echo 's';
 	}
+
 	echo '.';
 
-	// echo ' [ <b><a href="'.admin_url('?cbstdsys-php-errorlog=clear').'" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo ' [ <b><a href="?cbstdsys-php-errorlog=clear" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo '</p>';
 
@@ -107,19 +153,22 @@ function render_widget() {
 
 	$i = 0;
 	foreach ( $errors as $error ) {
-		$error = esc_html( $error );
+		$error = esc_html( (string) $error );
 		echo '<li style="padding:2px 4px 6px;border-bottom:1px solid #ececec;">';
-		$errorOutput = preg_replace( '/\[([^\]]+)\]/', '<b>[$1]</b>', $error, 1 );
-		if ( strlen( $errorOutput ) > $errorLengthLimit ) {
-			$errorOutput = substr( $errorOutput, 0, $errorLengthLimit ) . ' [&hellip;]';
+
+		$error_output = (string) preg_replace( '/\[([^\]]+)\]/', '<b>[$1]</b>', $error, 1 );
+		if ( strlen( $error_output ) > $error_length_limit ) {
+			$error_output = substr( $error_output, 0, $error_length_limit ) . ' [&hellip;]';
 		}
-		echo balanceTags( $errorOutput, true );
+		echo esc_html( balanceTags( $error_output, true ) );
 		echo '</li>';
+
 		$i++;
-		if ( $i > $displayErrorsLimit ) {
-			echo '<li class="howto">More than ' . $displayErrorsLimit . ' errors in log...</li>';
+		if ( $i > $error_display_limit ) {
+			echo esc_html( '<li class="howto">More than ' . $error_display_limit . ' errors in log...</li>' );
 			break;
 		}
 	}
 	echo '</ol></div>';
 }
+
