@@ -8,10 +8,14 @@
 namespace Figuren_Theater\Maintenance\Dashboard_Widget;
 
 use function add_action;
-
+use function admin_url;
 use function balanceTags;
 use function current_user_can;
+use function esc_url;
 use function wp_add_dashboard_widget;
+use function wp_nonce_url;
+use function wp_verify_nonce;
+use WP_CONTENT_DIR;
 
 /**
  * Get name of log file to show, depending on WP_DEBUG set or not.
@@ -40,7 +44,7 @@ function get_logfile_location() :string {
  * @return string
  */
 function get_logfile_path() :string {
-	return \WP_CONTENT_DIR . get_logfile_location();
+	return WP_CONTENT_DIR . get_logfile_location();
 }
 
 /**
@@ -112,16 +116,27 @@ function render_widget() :void {
 		return;
 	}
 
-	// Clear file.
-	// TODO #39 Fix "Processing form data without nonce verification." (WordPress.Security.NonceVerification.Recommended) !
-	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	if ( isset( $_GET['cbstdsys-php-errorlog'] ) && $_GET['cbstdsys-php-errorlog'] === 'clear' ) {
+	/**
+	 * Clear the log file.
+	 *
+	 * Protect nonce with current_user_can() check.
+	 *
+	 * Make sure current user can delete log files,
+	 * verify nonce and then perform action.
+	 *
+	 * Verifying nonce with sanitizing as per WPCS.
+	 */
+	if ( current_user_can( 'manage_sites' ) &&
+		isset( $_GET['ft_maintenance_dw_cl'] ) &&
+		wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ft_maintenance_dw_cl'] ) ), 'clear-logfile' )
+	) {
 		$handle = fopen( $wp_debug_log, 'w' );
 		if ( false !== $handle ) {
 			fclose( $handle );
 			$file_cleared = true;
 		}
 	}
+
 	// Read from file.
 	if ( ! file_exists( $wp_debug_log ) ) {
 		echo '<p><em>There was a problem reading the error log file.</em></p>';
@@ -143,9 +158,13 @@ function render_widget() :void {
 		echo 's';
 	}
 
+	// Build URL for clearing the logfile.
+	// Add nonce to the URL.
+	$clear_logfile_url = wp_nonce_url( admin_url(), 'clear-logfile', 'ft_maintenance_dw_cl' );
+
 	echo '.';
 
-	echo ' [ <b><a href="?cbstdsys-php-errorlog=clear" onclick="return;">CLEAR LOG FILE</a></b> ]';
+	echo ' [ <b><a href="' . esc_url( $clear_logfile_url ) . '" onclick="return;">CLEAR LOG FILE</a></b> ]';
 	echo '</p>';
 
 	echo '<div id="cbstdsys-php-errorlog" style="height:250px;overflow-y:scroll;padding:2px;background-color:#faf9f7;border:1px solid #ccc;">';
