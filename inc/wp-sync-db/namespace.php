@@ -15,6 +15,7 @@ use FT_VENDOR_DIR;
 use function add_action;
 use function add_filter;
 use function get_sites;
+use function wp_get_environment_type;
 use function wp_list_pluck;
 
 const BASENAME   = 'wp-sync-db/wp-sync-db.php';
@@ -59,11 +60,12 @@ function load_plugin() :void {
  */
 function filter_options() :void {
 
-	$_temp_key = \getenv( 'FT_MAINTAINANCE_WPSDB_KEY' );
+	$_remote_key = \getenv( 'FT_MAINTAINANCE_WPSDB_REMOTE' );
+	$_local_key = ( 'local' === wp_get_environment_type() ) ? \getenv( 'FT_MAINTAINANCE_WPSDB_LOCAL' ) : $_remote_key;
 
 	$_options = [
 		'max_request' => 1048576,
-		'key'         => $_temp_key,
+		'key'         => $_local_key,
 		'allow_pull'  => true,
 		'allow_push'  => false,
 		'profiles'    => [
@@ -77,7 +79,7 @@ function filter_options() :void {
 				'exclude_post_types'  => '0',
 				'action'              => 'pull',
 				'connection_info'     => "https://figuren.theater
-				$_temp_key", // keep this CRAZY LINEBREAK !
+				$_remote_key", // keep this CRAZY LINEBREAK !
 
 				// replacements
 				// that will be done on many different tables
