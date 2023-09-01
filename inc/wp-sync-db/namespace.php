@@ -56,17 +56,16 @@ function load_plugin() :void {
 /**
  * Handle options
  *
- * @todo #36 Avoid hard-coded hashes
- *
  * @return void
  */
 function filter_options() :void {
 
-	$_temp_key = ( 'local' === wp_get_environment_type() ) ? 'fbCla6zyX/m9YK9/rBAG40npm71Y9bOc' : 'g3CqYqPZ5OSghQT1Fv7QAXqhy4BsXnf1';
+	$_remote_key = \getenv( 'FT_MAINTAINANCE_WPSDB_REMOTE' );
+	$_local_key = ( 'local' === wp_get_environment_type() ) ? \getenv( 'FT_MAINTAINANCE_WPSDB_LOCAL' ) : $_remote_key;
 
 	$_options = [
 		'max_request' => 1048576,
-		'key'         => $_temp_key,
+		'key'         => $_local_key,
 		'allow_pull'  => true,
 		'allow_push'  => false,
 		'profiles'    => [
@@ -79,8 +78,8 @@ function filter_options() :void {
 				'create_backup'       => '0',
 				'exclude_post_types'  => '0',
 				'action'              => 'pull',
-				'connection_info'     => 'https://figuren.theater
-g3CqYqPZ5OSghQT1Fv7QAXqhy4BsXnf1', // keep this CRAZY LINEBREAK !
+				'connection_info'     => "https://figuren.theater
+				$_remote_key", // keep this CRAZY LINEBREAK !
 
 				// replacements
 				// that will be done on many different tables
