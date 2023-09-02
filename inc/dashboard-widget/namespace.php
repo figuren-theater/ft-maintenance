@@ -94,7 +94,7 @@ function add_widget() :void {
  * Reads and displays the first x (1000 by default) lines from php_error.log
  * or debug.log if WP_DEBUG is enabled.
  *
- * @todo  clean this up even more. This is still a mess from 1995.
+ * @todo #44  clean this up even more. This is still a mess from 1995.
  *
  * @since 0.0.1
  *
