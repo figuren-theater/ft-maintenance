@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.1.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.2.0...HEAD)
+
+## [1.2.0](https://github.com/figuren-theater/ft-maintenance/compare/1.1.0...1.2.0) - 2023-09-02
+
+### Security
+
+- Avoid hard-coded strings ([#43](https://github.com/figuren-theater/ft-maintenance/pull/43))
+- Add NonceVerification for clearing the logfile like CS recommended ([#42](https://github.com/figuren-theater/ft-maintenance/pull/42))
+
+### Dependency Updates & Maintenance
+
+- Updated 9 deps ([#45](https://github.com/figuren-theater/ft-maintenance/pull/45))
 
 ## [1.1.0](https://github.com/figuren-theater/ft-maintenance/compare/1.0.15...1.1.0) - 2023-08-10
 
