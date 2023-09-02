@@ -20,8 +20,6 @@ parameters:
             - tests/
     # @todo #37 Find a nicer way instead of ignoring this Error on every ft-module
     ignoreErrors:
-        - '#Constant WP_CONTENT_DIR not found\.#'
-        - '#Constant WPMU_PLUGIN_URL not found\.#'
         - '#Constant DISABLE_WP_CRON not found\.#'
         - '#Constant WP_ENVIRONMENT_TYPE not found\.#'
         - '#Function Altis\\register_module not found\.#'

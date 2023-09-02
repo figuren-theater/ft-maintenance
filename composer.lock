@@ -203,11 +203,11 @@
         },
         {
             "name": "figuren-theater/ft-options",
-            "version": "1.1.10",
+            "version": "1.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-options",
-                "reference": "6ac6d17165a472f1927fe42f891d62a79abb5765"
+                "reference": "7764df6116733212baa363483053728d38d3bf28"
             },
             "require": {
                 "markjaquith/wp-tlc-transients": "^1.0",
@@ -247,7 +247,7 @@
                 "issues": "https://github.com/figuren-theater/ft-options/issues",
                 "source": "https://github.com/figuren-theater/ft-options"
             },
-            "time": "2023-02-02T15:23:09+00:00"
+            "time": "2023-07-06T21:36:17+00:00"
         },
         {
             "name": "johnbillion/query-monitor",
@@ -1146,16 +1146,16 @@
         },
         {
             "name": "figuren-theater/code-quality",
-            "version": "0.6.6",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/code-quality.git",
-                "reference": "e75a8e42841f7637ee5c4b69c0bd3c55a07a4fbc"
+                "reference": "c783c4f792e4f448101d50cb19b97edcf52d310d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/figuren-theater/code-quality/zipball/e75a8e42841f7637ee5c4b69c0bd3c55a07a4fbc",
-                "reference": "e75a8e42841f7637ee5c4b69c0bd3c55a07a4fbc",
+                "url": "https://api.github.com/repos/figuren-theater/code-quality/zipball/c783c4f792e4f448101d50cb19b97edcf52d310d",
+                "reference": "c783c4f792e4f448101d50cb19b97edcf52d310d",
                 "shasum": ""
             },
             "require": {
@@ -1195,20 +1195,20 @@
                 "issues": "https://github.com/figuren-theater/code-quality/issues",
                 "source": "https://github.com/figuren-theater/code-quality"
             },
-            "time": "2023-07-17T18:30:13+00:00"
+            "time": "2023-09-01T23:53:33+00:00"
         },
         {
             "name": "figuren-theater/coding-standards",
-            "version": "0.3.1",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/coding-standards.git",
-                "reference": "e44b1012a35aeebc312f30c978eba132f7073cae"
+                "reference": "42929bf1e4c18f6ea16ec0a935b001548b825b5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/figuren-theater/coding-standards/zipball/e44b1012a35aeebc312f30c978eba132f7073cae",
-                "reference": "e44b1012a35aeebc312f30c978eba132f7073cae",
+                "url": "https://api.github.com/repos/figuren-theater/coding-standards/zipball/42929bf1e4c18f6ea16ec0a935b001548b825b5e",
+                "reference": "42929bf1e4c18f6ea16ec0a935b001548b825b5e",
                 "shasum": ""
             },
             "require": {
@@ -1245,20 +1245,20 @@
                 "issues": "https://github.com/figuren-theater/coding-standards/issues",
                 "source": "https://github.com/figuren-theater/coding-standards"
             },
-            "time": "2023-07-17T18:22:06+00:00"
+            "time": "2023-08-25T09:04:03+00:00"
         },
         {
             "name": "figuren-theater/phpstan",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/phpstan.git",
-                "reference": "3aec3c760c830f185098280bf12fcec78701cb86"
+                "reference": "b4e7fffb5b43e24f5de9f21e53f2c3df2023ed82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/figuren-theater/phpstan/zipball/3aec3c760c830f185098280bf12fcec78701cb86",
-                "reference": "3aec3c760c830f185098280bf12fcec78701cb86",
+                "url": "https://api.github.com/repos/figuren-theater/phpstan/zipball/b4e7fffb5b43e24f5de9f21e53f2c3df2023ed82",
+                "reference": "b4e7fffb5b43e24f5de9f21e53f2c3df2023ed82",
                 "shasum": ""
             },
             "require": {
@@ -1299,7 +1299,7 @@
                 "issues": "https://github.com/figuren-theater/phpstan/issues",
                 "source": "https://github.com/figuren-theater/phpstan"
             },
-            "time": "2023-06-26T21:48:02+00:00"
+            "time": "2023-09-01T22:15:08+00:00"
         },
         {
             "name": "humanmade/coding-standards",
@@ -1512,21 +1512,21 @@
         },
         {
             "name": "php-stubs/wordpress-stubs",
-            "version": "v6.2.1",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-stubs/wordpress-stubs.git",
-                "reference": "0009429e639b748eef1c955200ea0d4e5ad5627d"
+                "reference": "adda7609e71d5f4dc7b87c74f8ec9e3437d2e92c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/0009429e639b748eef1c955200ea0d4e5ad5627d",
-                "reference": "0009429e639b748eef1c955200ea0d4e5ad5627d",
+                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/adda7609e71d5f4dc7b87c74f8ec9e3437d2e92c",
+                "reference": "adda7609e71d5f4dc7b87c74f8ec9e3437d2e92c",
                 "shasum": ""
             },
             "require-dev": {
-                "nikic/php-parser": "< 4.12.0",
-                "php": "~7.3 || ~8.0",
+                "nikic/php-parser": "^4.13",
+                "php": "^7.4 || ~8.0.0",
                 "php-stubs/generator": "^0.8.3",
                 "phpdocumentor/reflection-docblock": "^5.3",
                 "phpstan/phpstan": "^1.10.12",
@@ -1534,7 +1534,6 @@
             },
             "suggest": {
                 "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
-                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
                 "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
             },
             "type": "library",
@@ -1551,9 +1550,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
-                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.2.1"
+                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.3.0"
             },
-            "time": "2023-05-18T04:35:23+00:00"
+            "time": "2023-08-10T16:34:11+00:00"
         },
         {
             "name": "phpcompatibility/php-compatibility",
@@ -1775,16 +1774,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.25",
+            "version": "1.10.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "578f4e70d117f9a90699324c555922800ac38d8c"
+                "reference": "c47e47d3ab03137c0e121e77c4d2cb58672f6d44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/578f4e70d117f9a90699324c555922800ac38d8c",
-                "reference": "578f4e70d117f9a90699324c555922800ac38d8c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c47e47d3ab03137c0e121e77c4d2cb58672f6d44",
+                "reference": "c47e47d3ab03137c0e121e77c4d2cb58672f6d44",
                 "shasum": ""
             },
             "require": {
@@ -1833,7 +1832,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-06T12:11:37+00:00"
+            "time": "2023-08-24T21:54:50+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1894,16 +1893,16 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.27.0",
+            "version": "v1.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9"
+                "reference": "fe2f306d1d9d346a7fee353d0d5012e401e984b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
-                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fe2f306d1d9d346a7fee353d0d5012e401e984b5",
+                "reference": "fe2f306d1d9d346a7fee353d0d5012e401e984b5",
                 "shasum": ""
             },
             "require": {
@@ -1912,7 +1911,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.27-dev"
+                    "dev-main": "1.28-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1953,7 +1952,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.27.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.28.0"
             },
             "funding": [
                 {
@@ -1969,7 +1968,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T14:55:06+00:00"
+            "time": "2023-01-26T09:26:14+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
