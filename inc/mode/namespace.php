@@ -7,6 +7,8 @@
 
 namespace Figuren_Theater\Maintenance\Mode;
 
+use Figuren_Theater;
+
 use function add_action;
 use function add_filter;
 use function current_user_can;
@@ -87,7 +89,7 @@ function output_dropin_note( array $meta, string $file, array $data, string $sta
 			'https://github.com/figuren-theater/ft-maintenance',
 			sprintf(
 				esc_html__( 'Version %s', 'figurentheater' ),
-				FT_PLATTFORM_VERSION
+				Figuren_Theater\get_platform_version()
 			),
 			__NAMESPACE__
 		),
