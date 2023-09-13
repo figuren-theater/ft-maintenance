@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.2.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.2.1...HEAD)
+
+## [1.2.1](https://github.com/figuren-theater/ft-maintenance/compare/1.2.0...1.2.1) - 2023-09-13
+
+- Deprecate FT_PLATTFORM_VERSION constant, use a fn instead ([#47](https://github.com/figuren-theater/ft-maintenance/pull/47))
 
 ## [1.2.0](https://github.com/figuren-theater/ft-maintenance/compare/1.1.0...1.2.0) - 2023-09-02
 
