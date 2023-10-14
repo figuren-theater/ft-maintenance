@@ -31,23 +31,19 @@
 	},
 	"require": {
 		"php": ">=7.1",
-		"devgeniem/wp-cron-runner": "^1.0",
-		"figuren-theater/ft-options": "^1",
-		"johnbillion/query-monitor": "^3",
-		"johnbillion/wp-crontrol": "^1.15",
-		"koodimonni/composer-dropin-installer": "^1.4",
-		"pixelstudio/wp-sync-db": "^1.7",
-		"wpackagist-plugin/multisite-enhancements": "^1.6",
-		"wpackagist-plugin/wp-db-backup": "^2.5"
+		"devgeniem/wp-cron-runner": "1.0.3",
+		"figuren-theater/ft-options": "*",
+		"johnbillion/query-monitor": "3.13.1",
+		"johnbillion/wp-crontrol": "1.15.3",
+		"koodimonni/composer-dropin-installer": "1.4",
+		"pixelstudio/wp-sync-db": "1.7.1",
+		"wpackagist-plugin/multisite-enhancements": "1.6.1",
+		"wpackagist-plugin/wp-db-backup": "2.5.2"
 	},
 	"require-dev": {
 		"figuren-theater/code-quality": "*"
 	},
 	"repositories": [
-		{
-			"type": "git",
-			"url": "https://github.com/figuren-theater/ft-options"
-		},
 		{
 			"type": "vcs",
 			"url": "https://github.com/hrsetyono/wp-sync-db"
