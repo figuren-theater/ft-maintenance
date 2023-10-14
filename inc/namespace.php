@@ -23,7 +23,7 @@ function register() :void {
 	$default_settings = [
 		'enabled'        => true, // Needs to be set.
 		'query-monitor'  => WP_DEBUG,
-		'wp-crontrol'    => WP_DEBUG,
+		'wp-crontrol'    => true,
 		'wp-cron-runner' => DISABLE_WP_CRON,
 		'wp-db-backup'   => ( 'production' === WP_ENVIRONMENT_TYPE ),
 		'wp-sync-db'     => true,
