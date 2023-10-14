@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.2.1...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.2.2...HEAD)
+
+## [1.2.2](https://github.com/figuren-theater/ft-maintenance/compare/1.2.1...1.2.2) - 2023-10-14
+
+### 🚀 Added
+
+- Enable 'wp_crontrol' for all runs, not only when WP_DEBUG is enabled ([#49](https://github.com/figuren-theater/ft-maintenance/pull/49))
+
+### Dependency Updates & Maintenance
+
+- Set fixed versions for all 3rd-party-deps & UPDATE internal deps ([#50](https://github.com/figuren-theater/ft-maintenance/pull/50))
 
 ## [1.2.1](https://github.com/figuren-theater/ft-maintenance/compare/1.2.0...1.2.1) - 2023-09-13
 
