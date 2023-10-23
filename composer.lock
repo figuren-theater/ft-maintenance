@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d3bfffc50f722cdad2010c63be48049",
+    "content-hash": "570b10d66050da942e7f9e8e064ec7ba",
     "packages": [
         {
             "name": "composer/installers",
@@ -332,21 +332,21 @@
         },
         {
             "name": "johnbillion/wp-crontrol",
-            "version": "1.15.3",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/wp-crontrol.git",
-                "reference": "d9451be673eac267114c623b1f453630c8751f91"
+                "reference": "21fdbb3880ba669854646bee546f8ecfa4825333"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/d9451be673eac267114c623b1f453630c8751f91",
-                "reference": "d9451be673eac267114c623b1f453630c8751f91",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/21fdbb3880ba669854646bee546f8ecfa4825333",
+                "reference": "21fdbb3880ba669854646bee546f8ecfa4825333",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0",
-                "php": ">=5.6"
+                "php": ">=7.4"
             },
             "require-dev": {
                 "codeception/module-asserts": "^1.0",
@@ -399,7 +399,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-06-30T17:36:52+00:00"
+            "time": "2023-10-17T19:43:42+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",
