@@ -111,7 +111,7 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \cons
 	<meta name="robots" content="noindex">
 	<title>Umbaupause</title>
 	<?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ASSETS . 'css/twentytwenty-style.min.css' ); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo ASSETS . 'css/twentytwenty-style.min.css'; ?>">
 	<style>
 		body {
 			background-color: #000;
@@ -121,7 +121,6 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \cons
 		#wrapper {
 			display: grid;
 			place-items: center;  /* https://1linelayouts.glitch.me/ */
-
 			height: 95vh;
 		}
 
