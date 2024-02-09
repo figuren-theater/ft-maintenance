@@ -63,6 +63,7 @@
 		"files": [
 			"inc/blog-management/namespace.php",
 			"inc/dashboard-widget/namespace.php",
+			"inc/health-checks/namespace.php",
 			"inc/mode/namespace.php",
 			"inc/multisite-enhancements/namespace.php",
 			"inc/query-monitor/namespace.php",
