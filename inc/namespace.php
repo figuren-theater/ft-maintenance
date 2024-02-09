@@ -18,7 +18,7 @@ use WP_ENVIRONMENT_TYPE;
  *
  * @return void
  */
-function register() :void {
+function register(): void {
 
 	$default_settings = [
 		'enabled'        => true, // Needs to be set.
@@ -47,7 +47,7 @@ function register() :void {
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	// Plugins.
 	Multisite_Enhancements\bootstrap();
@@ -60,5 +60,6 @@ function bootstrap() :void {
 	// Best practices.
 	Blog_Management\bootstrap();
 	Dashboard_Widget\bootstrap();
+	Health_Checks\bootstrap();
 	Mode\bootstrap();
 }
