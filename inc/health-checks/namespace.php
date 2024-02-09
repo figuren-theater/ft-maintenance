@@ -54,7 +54,7 @@ function load(): void {
  * @wp 5.6.0 Added the `async_direct_test` array key for asynchronous tests.
  *              Added the `skip_cron` array key for all tests.
  *
- * @param array[] $tests {
+ * @param array<string, array<string, string|bool|callable>> $tests {
  *     An associative array of direct and asynchronous tests.
  *
  *     @type array[] $direct {
@@ -88,6 +88,8 @@ function load(): void {
  *         }
  *     }
  * }
+ * 
+ * @return array<string, array<string, string|bool|callable>>
  */
 function site_status_tests( array $tests ): array {
 		
