@@ -43,6 +43,9 @@
 	"require-dev": {
 		"figuren-theater/code-quality": "*"
 	},
+	"suggest": {
+		"figuren-theater/ft-routes": "Contains the mandatory filter, which will remove REST API enpoints from public."
+	},
 	"repositories": [
 		{
 			"type": "vcs",
@@ -60,6 +63,7 @@
 		"files": [
 			"inc/blog-management/namespace.php",
 			"inc/dashboard-widget/namespace.php",
+			"inc/health-checks/namespace.php",
 			"inc/mode/namespace.php",
 			"inc/multisite-enhancements/namespace.php",
 			"inc/query-monitor/namespace.php",
@@ -73,11 +77,11 @@
 	"config": {
 		"allow-plugins": {
 			"composer/installers": true,
-			"koodimonni/composer-dropin-installer": true,
-			"phpstan/extension-installer": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"ergebnis/composer-normalize": true,
-			"figuren-theater/ft-core": true
+			"figuren-theater/ft-core": true,
+			"koodimonni/composer-dropin-installer": true,
+			"phpstan/extension-installer": true
 		}
 	},
 	"extra": {
