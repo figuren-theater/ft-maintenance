@@ -33,6 +33,9 @@ function bootstrap(): void {
 function load(): void {
 	// Add or modify which site status tests are run on a site.
 	add_filter( 'site_status_tests', __NAMESPACE__ . '\\site_status_tests' );
+	// Remove the REST API endpoints related to the site-health checks from the public.
+	add_filter( 'Figuren_Theater\\Routes\\Disable_Public_JSON_REST_API\\endpoints_to_remove', __NAMESPACE__ . '\\remove_public_restroute_endpoints' );
+}
 
 /**
  * Add or modify which site status tests are run on a site.
@@ -132,4 +135,24 @@ function site_status_tests( array $tests ): array {
 	}
 
 	return $tests;
+}
+
+/**
+ * Remove the REST API endpoints related to the site-health checks from the public.
+ * 
+ * This filter is documented at: https://github.com/figuren-theater/ft-routes/blob/e4b14fb21f10edf6cd40a6882230b45cc5961c86/inc/disable-public-json-rest-api/namespace.php#L228
+ * 
+ * @param  string[] $endpoints List of REST API endpoints that will be made un-available to the public.
+ *
+ * @return string[]
+ */
+function remove_public_restroute_endpoints( array $endpoints ): array {
+
+	return array_merge( 
+		$endpoints,
+		[
+			'/wp-site-health/v1/tests',
+			'/wp-site-health/v1/directory-sizes',
+		]
+	);
 }

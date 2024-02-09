@@ -43,6 +43,9 @@
 	"require-dev": {
 		"figuren-theater/code-quality": "*"
 	},
+	"suggest": {
+		"figuren-theater/ft-routes": "Contains the mandatory filter, which will remove REST API enpoints from public."
+	},
 	"repositories": [
 		{
 			"type": "vcs",
