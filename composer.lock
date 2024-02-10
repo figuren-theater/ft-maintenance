@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73c8d9d64830848548c4f8cbd0aa1a09",
+    "content-hash": "f183603b741da689b7f2a3f38092e225",
     "packages": [
         {
             "name": "composer/installers",
@@ -334,19 +334,24 @@
         {
             "name": "johnbillion/wp-crontrol",
             "version": "1.16.1",
+            "version": "1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/wp-crontrol.git",
+                "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de"
                 "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/d0d1b118d77d34ffc414d601bd633f7b629549de",
                 "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/d0d1b118d77d34ffc414d601bd633f7b629549de",
+                "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0",
+                "php": ">=7.4"
                 "php": ">=7.4"
             },
             "require-dev": {
@@ -400,6 +405,7 @@
                     "type": "github"
                 }
             ],
+            "time": "2023-11-16T22:50:41+00:00"
             "time": "2023-11-16T22:50:41+00:00"
         },
         {
@@ -2350,5 +2356,5 @@
         "php": ">=7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
