@@ -32,7 +32,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -44,7 +44,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
 	if ( ! $config['wp-db-backup'] ) {
@@ -66,7 +66,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 	global $wpdb;
 
 	$_options = [
@@ -109,7 +109,7 @@ function filter_options() :void {
  *
  * @return void
  */
-function remove_menu() :void {
+function remove_menu(): void {
 	if ( current_user_can( 'manage_sites' ) ) {
 		return;
 	}
@@ -128,7 +128,7 @@ function remove_menu() :void {
  *
  * @return string[]
  */
-function get_prefixed_table_names() : array {
+function get_prefixed_table_names(): array {
 
 	if ( is_main_site() ) {
 		global $mywpdbbackup;
@@ -156,7 +156,7 @@ function get_prefixed_table_names() : array {
 	);
 
 	$tables_to_save = array_map(
-		function( string $tablename ) : string {
+		function ( string $tablename ): string {
 			global $wpdb;
 			return $wpdb->prefix . $tablename;
 		},
@@ -191,7 +191,7 @@ function get_prefixed_table_names() : array {
  *
  * @return void
  */
-function save_backup_time() :void {
+function save_backup_time(): void {
 	// Unschedule the previous cron job for database backup.
 	wp_clear_scheduled_hook( 'wp_db_backup_cron' );
 
@@ -230,7 +230,6 @@ function save_backup_time() :void {
 		wp_schedule_event( $timestamp, $recurrence, 'wp_db_backup_cron' );
 	} catch ( Exception $wp_error ) {
 		// If an exception occurs, trigger an error action and return false.
-		do_action( 'qm/error', $wp_error ); // See https://querymonitor.com/docs/logging-variables/ for more examples.
+		do_action( 'qm/error', $wp_error ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	}
 }
-

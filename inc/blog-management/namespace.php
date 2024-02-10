@@ -15,10 +15,9 @@ use add_filter;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'init', __NAMESPACE__ . '\\load' );
-
 }
 
 /**
@@ -26,9 +25,9 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load() :void {
+function load(): void {
 
-	add_filter( 'wpmu_drop_tables', __NAMESPACE__ . '\\wpmu_drop_tables', 10, 2 );
+	add_filter( 'wpmu_drop_tables', __NAMESPACE__ . '\\wpmu_drop_tables', 10 );
 }
 
 /**
@@ -36,15 +35,11 @@ function load() :void {
  *
  * Gets the blogs table-prefix and searches for all tables with this part of their name.
  *
- * @package [package]
- * @since   2.10
+ * @param  string[] $tables Tables to delete (in addition to the WP default).
  *
- * @param   string[]  $tables  [description]
- * @param   int       $site_id [description]
- *
- * @return  string[]  Tables to delete (in addition to the WP default).
+ * @return string[]
  */
-function wpmu_drop_tables( array $tables, int $site_id ) :array {
+function wpmu_drop_tables( array $tables ): array {
 
 	global $wpdb;
 
@@ -71,5 +66,3 @@ function wpmu_drop_tables( array $tables, int $site_id ) :array {
 
 	return $tables;
 }
-
-

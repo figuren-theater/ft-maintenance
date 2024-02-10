@@ -7,22 +7,25 @@
 
 namespace Figuren_Theater\Maintenance\Dashboard_Widget;
 
+use WP_CONTENT_DIR;
+use WP_Filesystem;
 use function add_action;
 use function admin_url;
 use function balanceTags;
 use function current_user_can;
 use function esc_url;
+use function request_filesystem_credentials;
+use function site_url;
 use function wp_add_dashboard_widget;
 use function wp_nonce_url;
 use function wp_verify_nonce;
-use WP_CONTENT_DIR;
 
 /**
  * Get name of log file to show, depending on WP_DEBUG set or not.
  *
  * @return string
  */
-function get_logfile_type() :string {
+function get_logfile_type(): string {
 	return ( defined( 'WP_DEBUG' ) ) ? 'debug' : 'error';
 }
 
@@ -31,7 +34,7 @@ function get_logfile_type() :string {
  *
  * @return string
  */
-function get_logfile_location() :string {
+function get_logfile_location(): string {
 	return \sprintf(
 		'/logs/php.%s.log',
 		get_logfile_type()
@@ -43,7 +46,7 @@ function get_logfile_location() :string {
  *
  * @return string
  */
-function get_logfile_path() :string {
+function get_logfile_path(): string {
 	return WP_CONTENT_DIR . get_logfile_location();
 }
 
@@ -52,7 +55,7 @@ function get_logfile_path() :string {
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 	add_action( 'wp_network_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
@@ -63,7 +66,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function add_widget() :void {
+function add_widget(): void {
 
 	if ( ! current_user_can( 'manage_sites' ) ) {
 		return;
@@ -88,6 +91,48 @@ function add_widget() :void {
 }
 
 /**
+ * Erases the content of the given file, 
+ * without deleting the file itself.
+ * 
+ * @see https://developer.wordpress.org/apis/filesystem/#tips-and-tricks
+ * 
+ * @param string $filename Absolute path to the file to erase.
+ *
+ * @return bool Whether the content-deletion was succesful or not.
+ */
+function clear_log_file( string $filename ): bool {
+
+	// Don't have direct write access. Maybe prompt user with a notice later ...
+	$access_type = get_filesystem_method();
+	if ( $access_type !== 'direct' ) {
+		return false;   
+	}
+	
+	// We can safely run request_filesystem_credentials() without any issues and don't need to worry about passing in a URL.
+	$creds = request_filesystem_credentials( 
+		site_url() . '/wp-admin/',
+		'',
+		false,
+		'',
+		array()
+	);
+	
+	// Initialize the API. 
+	// @phpstan-ignore-next-line Ignore crazy boolean error, propably caused by the core coc-blocks.
+	if ( ! WP_Filesystem( $creds ) ) {
+		return false;
+	}
+	global $wp_filesystem;
+	
+	// Do our file manipulations and erase content of the file.
+	return $wp_filesystem->put_contents(
+		$filename,
+		'',           // Empty content of the file.
+		FS_CHMOD_FILE // Predefined mode settings for WP files.
+	);
+}
+
+/**
  *
  * Log-file monitoring as dashboard widget
  *
@@ -100,7 +145,7 @@ function add_widget() :void {
  *
  * @return void
  */
-function render_widget() :void {
+function render_widget(): void {
 
 	// The maximum number of errors to display in the widget.
 	$error_display_limit = 1000;
@@ -130,11 +175,7 @@ function render_widget() :void {
 		isset( $_GET['ft_maintenance_dw_cl'] ) &&
 		wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ft_maintenance_dw_cl'] ) ), 'clear-logfile' )
 	) {
-		$handle = fopen( $wp_debug_log, 'w' );
-		if ( false !== $handle ) {
-			fclose( $handle );
-			$file_cleared = true;
-		}
+		$file_cleared = clear_log_file( $wp_debug_log );
 	}
 
 	// Read from file.
@@ -182,7 +223,7 @@ function render_widget() :void {
 		echo esc_html( balanceTags( $error_output, true ) );
 		echo '</li>';
 
-		$i++;
+		++$i;
 		if ( $i > $error_display_limit ) {
 			echo esc_html( '<li class="howto">More than ' . $error_display_limit . ' errors in log...</li>' );
 			break;
@@ -190,4 +231,3 @@ function render_widget() :void {
 	}
 	echo '</ol></div>';
 }
-

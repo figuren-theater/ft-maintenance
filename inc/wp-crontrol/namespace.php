@@ -26,7 +26,7 @@ const PLUGINPATH = '/johnbillion/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
@@ -36,7 +36,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
 	if ( ! $config['wp-crontrol'] ) {
@@ -57,7 +57,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function remove_admin_menus() :void {
+function remove_admin_menus(): void {
 	if ( current_user_can( 'manage_sites' ) ) {
 		return;
 	}

@@ -24,7 +24,7 @@ const PLUGINPATH = '/pixelstudio/' . BASENAME;
 /**
  * Bootstrap module, when enabled.
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -38,7 +38,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['maintenance'];
 	if ( ! $config['wp-sync-db'] ) {
@@ -58,27 +58,27 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_remote_key = \getenv( 'FT_MAINTAINANCE_WPSDB_REMOTE' );
-	$_local_key = ( 'local' === wp_get_environment_type() ) ? \getenv( 'FT_MAINTAINANCE_WPSDB_LOCAL' ) : $_remote_key;
+	$_local_key  = ( 'local' === wp_get_environment_type() ) ? \getenv( 'FT_MAINTAINANCE_WPSDB_LOCAL' ) : $_remote_key;
 
 	$_options = [
-		'max_request' => 1048576,
-		'key'         => $_local_key,
-		'allow_pull'  => true,
-		'allow_push'  => false,
-		'profiles'    => [
+		'max_request'          => 1048576,
+		'key'                  => $_local_key,
+		'allow_pull'           => true,
+		'allow_push'           => false,
+		'profiles'             => [
 			0 => [
-				'save_computer'       => '1',
-				'gzip_file'           => '1',
-				'replace_guids'       => '0',
-				'exclude_spam'        => '1',
-				'keep_active_plugins' => '0',
-				'create_backup'       => '0',
-				'exclude_post_types'  => '0',
-				'action'              => 'pull',
-				'connection_info'     => "https://figuren.theater
+				'save_computer'                 => '1',
+				'gzip_file'                     => '1',
+				'replace_guids'                 => '0',
+				'exclude_spam'                  => '1',
+				'keep_active_plugins'           => '0',
+				'create_backup'                 => '0',
+				'exclude_post_types'            => '0',
+				'action'                        => 'pull',
+				'connection_info'               => "https://figuren.theater
 				$_remote_key", // keep this CRAZY LINEBREAK !
 
 				// replacements
@@ -93,7 +93,7 @@ function filter_options() :void {
 				// we have our 'replace_tlds_on_migrate' filter
 				//
 				// @TODO #29 Make path replacements dynamic.
-				'replace_old' => [
+				'replace_old'                   => [
 					1 => '/srv/www/htdocs/c.bach/www.puppen.theater',
 					2 => '//figuren.theater',
 					3 => '.figuren.theater',
@@ -102,7 +102,7 @@ function filter_options() :void {
 
 					6 => '//katharina-muschiol.de',
 				],
-				'replace_new' => [
+				'replace_new'                   => [
 					1 => '/shared/httpd/figuren/htdocs',
 					2 => '//figuren.test',
 					3 => '.figuren.test',
@@ -139,7 +139,7 @@ function filter_options() :void {
  *
  * @return void
  */
-function remove_menu() : void {
+function remove_menu(): void {
 	if ( ! current_user_can( 'manage_sites' ) ) {
 		remove_submenu_page( 'settings.php', 'wp-sync-db' );
 	}
@@ -153,7 +153,7 @@ function remove_menu() : void {
  *
  * @return string[]
  */
-function replace_tlds_on_migrate( array $domain_replaces ) : array {
+function replace_tlds_on_migrate( array $domain_replaces ): array {
 
 	foreach ( _get_sites() as $site_url ) {
 		$domain_replaces[ sprintf( '/%s/', $site_url ) ] = _replace_tld( $site_url );
@@ -172,7 +172,7 @@ function replace_tlds_on_migrate( array $domain_replaces ) : array {
  *
  * @return string
  */
-function _replace_tld( string $url, string $new_tld = 'test' ) : string {
+function _replace_tld( string $url, string $new_tld = 'test' ): string {
 	// Cut url into array pieces.
 	$url_parts = explode( '.', $url );
 
@@ -190,7 +190,7 @@ function _replace_tld( string $url, string $new_tld = 'test' ) : string {
  *
  * @return string[]
  */
-function _get_sites() : array {
+function _get_sites(): array {
 
 	// List of WP_Site objects,
 	// or a list of site IDs when 'fields' is set to 'ids',

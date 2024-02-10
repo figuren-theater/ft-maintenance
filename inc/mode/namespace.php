@@ -23,7 +23,7 @@ const TEMPLATE = __DIR__ . '/error-template.php';
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	if ( defined( 'FT_MAINTENANCE_MODE' ) && \constant( 'FT_MAINTENANCE_MODE' ) ) {
 		add_action( 'set_current_user', __NAMESPACE__ . '\\load', -1000 );
@@ -40,7 +40,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load() :void {
+function load(): void {
 
 	if ( current_user_can( 'switch_themes' ) ) {
 		return;
@@ -67,14 +67,14 @@ function load_plugins() {
 /**
  * Add note to [maintenance, php-error, db-error].php on dropins list
  *
- * @param string[]  $meta Meta links
- * @param string    $file Plugin filename (sunrise.php for sunrise)
- * @param string[]  $data Data from the plugin header
- * @param string    $status Status of the plugin
+ * @param string[] $meta   Meta links.
+ * @param string   $file   Plugin filename (sunrise.php for sunrise).
+ * @param string[] $data   Data from the plugin header.
+ * @param string   $status Status of the plugin.
  *
- * @return string[] Modified meta links
+ * @return string[] Modified meta links.
  */
-function output_dropin_note( array $meta, string $file, array $data, string $status ) :array {
+function output_dropin_note( array $meta, string $file, array $data, string $status ): array {
 	if ( 'dropins' !== $status ) {
 		return $meta;
 	}
@@ -85,9 +85,11 @@ function output_dropin_note( array $meta, string $file, array $data, string $sta
 
 	$note = '<em>' . wp_kses(
 		sprintf(
+			/* translators: %1$s: Plugin Link, %2$s: Version x.y.z, %3$s: Plugin Name */
 			__( 'Enhanced by <a href="%1$s" title="%2$s">%3$s</a>', 'figurentheater' ),
 			'https://github.com/figuren-theater/ft-maintenance',
 			sprintf(
+				/* translators: %s: Version-Number */
 				esc_html__( 'Version %s', 'figurentheater' ),
 				Figuren_Theater\get_platform_version()
 			),
