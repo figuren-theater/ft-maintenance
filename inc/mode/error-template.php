@@ -2,7 +2,9 @@
 /**
  * Smart WP db-error.php, php-error.php and maintenance.php
  *
- * @source Smart_errors
+ * (Based on, but heavily modified)
+ *
+ * @source Smart_errors https://github.com/agkozak/smart-wp-db-error/
  * @version 1.0.6
  * @copyright 2017-2018 Alexandros Kozak
  * @license GPLv2 (or later)
@@ -12,9 +14,8 @@
 
 namespace Figuren_Theater\Maintenance\Mode; // phpcs:ignore HM.Files.NamespaceDirectoryName.NameMismatch
 
-use function esc_url;
-
 use WPMU_PLUGIN_URL;
+use function esc_url;
 
 // @todo #38 Replace hard-coded path
 const ASSETS = WPMU_PLUGIN_URL . '/FT/ft-maintenance/assets/';
@@ -26,24 +27,34 @@ if ( ! defined( 'FT_ERROR_MAIL_FROM' )
 	die();
 }
 
-$server_protocol = getenv( 'SERVER_PROTOCOL' );
-$server_name     = getenv( 'SERVER_NAME' );
-$request_uri     = getenv( 'REQUEST_URI' );
+/**
+ * Send headers and sometimes emails ;)
+ *
+ * @return void
+ */
+function ft_maintenance_mode_error_setup(): void {
+		
+	$lock            = __DIR__ . DIRECTORY_SEPARATOR . 'smart-errors.lock';
+	$server_protocol = getenv( 'SERVER_PROTOCOL' );
 
-// Information protocol of incoming request.
-if ( empty( $server_protocol ) ) {
-	$server_protocol = 'HTTP/1.1';
-}
-defined( 'FT_ERROR_STATUS' ) || define( 'FT_ERROR_STATUS', '503 Service Temporarily Unavailable' );
+	// Information protocol of incoming request.
+	if ( empty( $server_protocol ) ) {
+		$server_protocol = 'HTTP/1.1';
+	}
+	defined( 'FT_ERROR_STATUS' ) || define( 'FT_ERROR_STATUS', '503 Service Temporarily Unavailable' );
 
-header( $server_protocol . ' ' . FT_ERROR_STATUS );
-header( 'Status: ' . FT_ERROR_STATUS );
-header( 'Retry-After: 600' );
-$touched = false;
-$lock    = __DIR__ . DIRECTORY_SEPARATOR . 'smart-errors.lock';
+	header( $server_protocol . ' ' . FT_ERROR_STATUS );
+	header( 'Status: ' . FT_ERROR_STATUS );
+	header( 'Retry-After: 600' );
 
-// When db-error.php is accessed directly, only show the message; do not e-mail.
-if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \constant( 'FT_SUPPRESS_ERROR_EMAIL' ) ) ) {
+	// When db-error.php is accessed directly, only show the message; do not e-mail.
+	if ( ! defined( 'ABSPATH' ) ) {
+		return;
+	}
+	
+	if ( defined( 'FT_SUPPRESS_ERROR_EMAIL' ) && \constant( 'FT_SUPPRESS_ERROR_EMAIL' ) ) {
+		return;
+	}
 
 	// If lock exists and is older than the alert interval, delete it.
 	if ( file_exists( $lock ) ) {
@@ -54,55 +65,65 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \cons
 		// Otherwise try to create the lock; if successful, send the alert e-mail.
 		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_touch
 	} elseif ( touch( $lock ) ) {
-		$touched = true;
-		$headers = 'From: ' . FT_ERROR_MAIL_FROM . "\n" .
-			'X-Mailer: PHP/' . PHP_VERSION . "\n" .
-			'X-Priority: 1 (High)';
-
-		// Encrypted vs. non-encrypted connection.
-		if ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] ) {
-			$web_protocol = 'https';
-		} else {
-			$web_protocol = 'http';
-		}
-
-		// Server name.
-		if ( ! empty( $server_name ) ) {
-			$server_name = filter_var(
-				stripslashes(
-					$server_name
-				),
-				FILTER_SANITIZE_URL
-			);
-		} else {
-			$server_name = '';
-		}
-
-		// Request URI.
-		if ( ! empty( $request_uri ) ) {
-			$request_uri = filter_var(
-				stripslashes(
-					$request_uri
-				),
-				FILTER_SANITIZE_URL
-			);
-		} else {
-			$request_uri = '';
-		}
-
-		// The e-mail alert.
-		$message = 'Database Error on ' . $server_name . "\n" .
-			'The database error occurred when someone tried to open this page: '
-			. $web_protocol . '://' . $server_name . $request_uri . "\n";
-		$subject = 'Database error at ' . $server_name;
-		mail( // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_mail_mail
-			FT_ERROR_MAIL_TO,
-			$subject,
-			$message,
-			$headers
-		);
+		// Send alert email.
+		ft_maintenance_mode_send_alert_email();
 	}
 }
+
+/**
+ * Send alert email
+ *
+ * @return void
+ */
+function ft_maintenance_mode_send_alert_email(): void {
+
+	$request_uri = getenv( 'REQUEST_URI' );
+	$server_name = getenv( 'SERVER_NAME' );
+
+	$headers = 'From: ' . FT_ERROR_MAIL_FROM . "\n"
+	. 'X-Mailer: PHP/' . PHP_VERSION . "\n"
+	. 'X-Priority: 1 (High)';
+
+	// Encrypted vs. non-encrypted connection.
+	if ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] ) {
+		$web_protocol = 'https';
+	} else {
+		$web_protocol = 'http';
+	}
+
+	// Server name.
+	if ( ! empty( $server_name ) ) {
+		$server_name = filter_var(
+			stripslashes( $server_name ),
+			FILTER_SANITIZE_URL
+		);
+	} else {
+		$server_name = '';
+	}
+
+	// Request URI.
+	if ( ! empty( $request_uri ) ) {
+		$request_uri = filter_var(
+			stripslashes( $request_uri ),
+			FILTER_SANITIZE_URL
+		);
+	} else {
+		$request_uri = '';
+	}
+
+	// The e-mail alert.
+	$message = 'Database Error on ' . $server_name . "\n"
+		. 'The database error occurred when someone tried to open this page: '
+		. $web_protocol . '://' . $server_name . $request_uri . "\n";
+	$subject = 'Database error at ' . $server_name;
+	mail( // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_mail_mail
+		FT_ERROR_MAIL_TO,
+		$subject,
+		$message,
+		$headers
+	);
+}
+ft_maintenance_mode_error_setup();
 ?>
 
 <!doctype html>
@@ -110,7 +131,7 @@ if ( defined( 'ABSPATH' ) && ( ! defined( 'FT_SUPPRESS_ERROR_EMAIL' ) || ! \cons
 <head>
 	<meta name="robots" content="noindex">
 	<title>Umbaupause</title>
-	<?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet ?>
+	<?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet, WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo ASSETS . 'css/twentytwenty-style.min.css'; ?>">
 	<style>
 		body {

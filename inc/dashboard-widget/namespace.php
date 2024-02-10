@@ -7,6 +7,7 @@
 
 namespace Figuren_Theater\Maintenance\Dashboard_Widget;
 
+use WP_CONTENT_DIR;
 use function add_action;
 use function admin_url;
 use function balanceTags;
@@ -15,14 +16,13 @@ use function esc_url;
 use function wp_add_dashboard_widget;
 use function wp_nonce_url;
 use function wp_verify_nonce;
-use WP_CONTENT_DIR;
 
 /**
  * Get name of log file to show, depending on WP_DEBUG set or not.
  *
  * @return string
  */
-function get_logfile_type() :string {
+function get_logfile_type(): string {
 	return ( defined( 'WP_DEBUG' ) ) ? 'debug' : 'error';
 }
 
@@ -31,7 +31,7 @@ function get_logfile_type() :string {
  *
  * @return string
  */
-function get_logfile_location() :string {
+function get_logfile_location(): string {
 	return \sprintf(
 		'/logs/php.%s.log',
 		get_logfile_type()
@@ -43,7 +43,7 @@ function get_logfile_location() :string {
  *
  * @return string
  */
-function get_logfile_path() :string {
+function get_logfile_path(): string {
 	return WP_CONTENT_DIR . get_logfile_location();
 }
 
@@ -52,7 +52,7 @@ function get_logfile_path() :string {
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
 	add_action( 'wp_network_dashboard_setup', __NAMESPACE__ . '\\add_widget' );
@@ -63,7 +63,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function add_widget() :void {
+function add_widget(): void {
 
 	if ( ! current_user_can( 'manage_sites' ) ) {
 		return;
@@ -100,7 +100,7 @@ function add_widget() :void {
  *
  * @return void
  */
-function render_widget() :void {
+function render_widget(): void {
 
 	// The maximum number of errors to display in the widget.
 	$error_display_limit = 1000;
@@ -182,7 +182,7 @@ function render_widget() :void {
 		echo esc_html( balanceTags( $error_output, true ) );
 		echo '</li>';
 
-		$i++;
+		++$i;
 		if ( $i > $error_display_limit ) {
 			echo esc_html( '<li class="howto">More than ' . $error_display_limit . ' errors in log...</li>' );
 			break;
@@ -190,4 +190,3 @@ function render_widget() :void {
 	}
 	echo '</ol></div>';
 }
-

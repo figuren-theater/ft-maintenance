@@ -3,6 +3,7 @@
 	<description>Coding standards for ft-maintenance</description>
 
 	<file>.</file>
+	<arg name="basepath" value="./"/><!-- Strip the file paths down to the relevant bit -->
 
 	<!--
 	<exclude-pattern>*/bin/*</exclude-pattern>

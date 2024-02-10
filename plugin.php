@@ -9,7 +9,7 @@
  * Domain Path:     /languages
  * Version:         1.2.2
  *
- * @package         figuren-theater/maintenance
+ * @package         figuren-theater/ft-maintenance
  */
 
 namespace Figuren_Theater\Maintenance;

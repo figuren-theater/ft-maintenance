@@ -23,7 +23,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -36,7 +36,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
@@ -52,7 +52,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function unload_plugin_ui() :void {
+function unload_plugin_ui(): void {
 
 	remove_action( 'init', [ 'Multisite_Enhancements_Settings', 'init' ] );
 }
@@ -69,7 +69,7 @@ function unload_plugin_ui() :void {
  * 
  * @return string The path to the MO file or an empty string if unloading is needed.
  */
-function unload_i18n( string $mofile, string $domain ) : string {
+function unload_i18n( string $mofile, string $domain ): string {
 	// Check if the domain is 'multisite-enhancements'.
 	if ( 'multisite-enhancements' === $domain ) {
 		// If the domain is 'multisite-enhancements', prevent loading and return an empty string.
@@ -85,7 +85,7 @@ function unload_i18n( string $mofile, string $domain ) : string {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		'remove-logo'         => 1,

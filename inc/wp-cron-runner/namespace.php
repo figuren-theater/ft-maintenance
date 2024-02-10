@@ -23,7 +23,7 @@ const PLUGINPATH = '/devgeniem/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'muplugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
@@ -40,7 +40,8 @@ function load_plugin() {
 		return;
 	}
 
-	defined( 'WP_ALLOW_MULTISITE' ) || define( 'WP_ALLOW_MULTISITE', true ); // Needed by devgeniem/wp-cron-runner.
+	// Needed by devgeniem/wp-cron-runner.
+	defined( 'WP_ALLOW_MULTISITE' ) || define( 'WP_ALLOW_MULTISITE', true ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
@@ -53,6 +54,6 @@ function load_plugin() {
  *
  * @return void
  */
-function remove_menu() : void {
+function remove_menu(): void {
 	remove_submenu_page( 'settings.php', 'setup.php' );
 }
