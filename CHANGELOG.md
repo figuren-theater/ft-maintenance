@@ -2,7 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.2.2...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.3.0...HEAD)
+
+## [1.3.0](https://github.com/figuren-theater/ft-maintenance/compare/1.2.2...1.3.0) - 2024-02-10
+
+### 🚀 Added
+
+- Use WordPress core functions from within the Dashboard-Widget to erase the content of log files ([#56](https://github.com/figuren-theater/ft-maintenance/pull/56))
+
+### 🐛 Fixed
+
+- Migrate 'Site Health Check' related code from 'deprecated_Figuren_Theater__v2' and 'ft-routes' ([#55](https://github.com/figuren-theater/ft-maintenance/pull/55))
+
+### Dependency Updates & Maintenance
+
+- Bump johnbillion/query-monitor from 3.13.1 to 3.15.0 ([#53](https://github.com/figuren-theater/ft-maintenance/pull/53))
+- Bump johnbillion/wp-crontrol from 1.15.3 to 1.16.1 ([#54](https://github.com/figuren-theater/ft-maintenance/pull/54))
 
 ## [1.2.2](https://github.com/figuren-theater/ft-maintenance/compare/1.2.1...1.2.2) - 2023-10-14
 
