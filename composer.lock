@@ -1232,6 +1232,7 @@
         },
         {
             "name": "figuren-theater/phpstan",
+			"version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/phpstan.git",
@@ -1285,7 +1286,7 @@
                 "issues": "https://github.com/figuren-theater/phpstan/issues",
                 "source": "https://github.com/figuren-theater/phpstan"
             },
-            "time": "2024-02-15T17:24:24+00:00
+            "time": "2024-02-15T17:24:24+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
