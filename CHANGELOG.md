@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.3.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.3.1...HEAD)
+
+## [1.3.1](https://github.com/figuren-theater/ft-maintenance/compare/1.3.0...1.3.1) - 2024-02-23
+
+### Dependency Updates & Maintenance
+
+- Mysterious merge with 10+ commits and no changes ([#58](https://github.com/figuren-theater/ft-maintenance/pull/58))
+- Bump figuren-theater/code-quality from 1.0.1 to 1.1.1 ([#57](https://github.com/figuren-theater/ft-maintenance/pull/57))
 
 ## [1.3.0](https://github.com/figuren-theater/ft-maintenance/compare/1.2.2...1.3.0) - 2024-02-10
 
