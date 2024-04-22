@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73c8d9d64830848548c4f8cbd0aa1a09",
+    "content-hash": "194dbfbf2da42fda412f7bacff056219",
     "packages": [
         {
             "name": "composer/installers",
@@ -333,16 +333,16 @@
         },
         {
             "name": "johnbillion/wp-crontrol",
-            "version": "1.16.1",
+            "version": "1.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/wp-crontrol.git",
-                "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de"
+                "reference": "0248b88cdc3fc55cb50d92cd36f87be2d1aa2e9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/d0d1b118d77d34ffc414d601bd633f7b629549de",
-                "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/0248b88cdc3fc55cb50d92cd36f87be2d1aa2e9d",
+                "reference": "0248b88cdc3fc55cb50d92cd36f87be2d1aa2e9d",
                 "shasum": ""
             },
             "require": {
@@ -387,8 +387,8 @@
                     "homepage": "http://scompt.com/"
                 }
             ],
-            "description": "WP Crontrol lets you view and control what's happening in the WP-Cron system.",
-            "homepage": "https://github.com/johnbillion/wp-crontrol/",
+            "description": "Take control of the cron events on your WordPress website",
+            "homepage": "https://wp-crontrol.com",
             "support": {
                 "forum": "https://wordpress.org/support/plugin/wp-crontrol",
                 "issues": "https://github.com/johnbillion/wp-crontrol/issues",
@@ -400,7 +400,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-16T22:50:41+00:00"
+            "time": "2024-04-19T11:18:19+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",
