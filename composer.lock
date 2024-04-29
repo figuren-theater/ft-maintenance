@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73c8d9d64830848548c4f8cbd0aa1a09",
+    "content-hash": "8fa3942fe05eac74f0f4e761ed049bc2",
     "packages": [
         {
             "name": "composer/installers",
@@ -261,16 +261,16 @@
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.15.0",
+            "version": "3.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "c33b82b1d2281722a0dc49c7c5cc6869b3fcd23b"
+                "reference": "2e5ee261cb3c6ba97f61b04efe1aa85222fe8f42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/c33b82b1d2281722a0dc49c7c5cc6869b3fcd23b",
-                "reference": "c33b82b1d2281722a0dc49c7c5cc6869b3fcd23b",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/2e5ee261cb3c6ba97f61b04efe1aa85222fe8f42",
+                "reference": "2e5ee261cb3c6ba97f61b04efe1aa85222fe8f42",
                 "shasum": ""
             },
             "require": {
@@ -283,7 +283,6 @@
                 "codeception/module-webdriver": "^1.0",
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
-                "ergebnis/composer-normalize": "^2",
                 "johnbillion/plugin-infrastructure": "dev-trunk",
                 "lucatume/wp-browser": "3.2.1",
                 "phpcompatibility/phpcompatibility-wp": "2.1.4",
@@ -329,7 +328,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-10T18:27:20+00:00"
+            "time": "2024-04-22T13:30:47+00:00"
         },
         {
             "name": "johnbillion/wp-crontrol",
