@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "797923162b9ce495caf5a9bd78d8e5a5",
+    "content-hash": "970d06935bc2c1e935dede14461b6ccd",
     "packages": [
         {
             "name": "composer/installers",
@@ -332,16 +332,16 @@
         },
         {
             "name": "johnbillion/wp-crontrol",
-            "version": "1.16.1",
+            "version": "1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/wp-crontrol.git",
-                "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de"
+                "reference": "b291a5d65aeb4ba17c88e5c4bb2f5da8943c9b89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/d0d1b118d77d34ffc414d601bd633f7b629549de",
-                "reference": "d0d1b118d77d34ffc414d601bd633f7b629549de",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/b291a5d65aeb4ba17c88e5c4bb2f5da8943c9b89",
+                "reference": "b291a5d65aeb4ba17c88e5c4bb2f5da8943c9b89",
                 "shasum": ""
             },
             "require": {
@@ -350,22 +350,22 @@
             },
             "require-dev": {
                 "codeception/module-asserts": "^1.0",
-                "codeception/module-filesystem": "^1.0",
+                "codeception/module-db": "^1.0",
                 "codeception/module-webdriver": "^1.0",
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "lucatume/wp-browser": "^3.0",
-                "phpcompatibility/phpcompatibility-wp": "2.1.2",
+                "johnbillion/plugin-infrastructure": "dev-trunk",
+                "lucatume/wp-browser": "3.2.1",
+                "phpcompatibility/phpcompatibility-wp": "2.1.4",
                 "phpstan/phpstan": "^1.7",
-                "phpunit/phpunit": "^9.0",
-                "roots/wordpress-core-installer": "^1.0.0",
+                "roots/wordpress-core-installer": "1.100.0",
                 "roots/wordpress-full": "*",
-                "szepeviktor/phpstan-wordpress": "^1.0",
+                "szepeviktor/phpstan-wordpress": "1.3.4",
                 "wp-coding-standards/wpcs": "2.3.0"
             },
             "type": "wordpress-plugin",
             "extra": {
-                "wordpress-install-dir": "tests/wordpress"
+                "wordpress-install-dir": "vendor/wordpress/wordpress"
             },
             "autoload": {
                 "classmap": [
@@ -386,8 +386,8 @@
                     "homepage": "http://scompt.com/"
                 }
             ],
-            "description": "WP Crontrol lets you view and control what's happening in the WP-Cron system.",
-            "homepage": "https://github.com/johnbillion/wp-crontrol/",
+            "description": "Take control of the cron events on your WordPress website",
+            "homepage": "https://wp-crontrol.com",
             "support": {
                 "forum": "https://wordpress.org/support/plugin/wp-crontrol",
                 "issues": "https://github.com/johnbillion/wp-crontrol/issues",
@@ -399,7 +399,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-16T22:50:41+00:00"
+            "time": "2024-07-15T13:58:33+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",
