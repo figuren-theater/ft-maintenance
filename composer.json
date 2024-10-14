@@ -37,7 +37,7 @@
 		"johnbillion/wp-crontrol": "1.17.0",
 		"koodimonni/composer-dropin-installer": "1.4",
 		"pixelstudio/wp-sync-db": "1.7.1",
-		"wpackagist-plugin/multisite-enhancements": "1.6.1",
+		"wpackagist-plugin/multisite-enhancements": "1.7.1",
 		"wpackagist-plugin/wp-db-backup": "2.5.2"
 	},
 	"require-dev": {
