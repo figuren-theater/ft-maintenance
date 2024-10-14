@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "970d06935bc2c1e935dede14461b6ccd",
+    "content-hash": "9cddea4af2cf64e3692a44e5b4d7beba",
     "packages": [
         {
             "name": "composer/installers",
@@ -550,15 +550,15 @@
         },
         {
             "name": "wpackagist-plugin/multisite-enhancements",
-            "version": "1.6.1",
+            "version": "1.7.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/multisite-enhancements/",
-                "reference": "tags/1.6.1"
+                "reference": "tags/1.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/multisite-enhancements.1.6.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/multisite-enhancements.1.7.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
