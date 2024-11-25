@@ -34,7 +34,7 @@
 		"devgeniem/wp-cron-runner": "1.0.3",
 		"figuren-theater/ft-options": "*",
 		"johnbillion/query-monitor": "3.16.4",
-		"johnbillion/wp-crontrol": "1.17.0",
+		"johnbillion/wp-crontrol": "1.17.1",
 		"koodimonni/composer-dropin-installer": "1.4",
 		"pixelstudio/wp-sync-db": "1.7.1",
 		"wpackagist-plugin/multisite-enhancements": "1.7.1",
