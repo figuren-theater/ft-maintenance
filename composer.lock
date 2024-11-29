@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cddea4af2cf64e3692a44e5b4d7beba",
+    "content-hash": "314b882524b354bd91a672d8e55f4857",
     "packages": [
         {
             "name": "composer/installers",
@@ -332,16 +332,16 @@
         },
         {
             "name": "johnbillion/wp-crontrol",
-            "version": "1.17.0",
+            "version": "1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/wp-crontrol.git",
-                "reference": "b291a5d65aeb4ba17c88e5c4bb2f5da8943c9b89"
+                "reference": "935132b5bcee5d70eb65c56104ff09ce36eb45cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/b291a5d65aeb4ba17c88e5c4bb2f5da8943c9b89",
-                "reference": "b291a5d65aeb4ba17c88e5c4bb2f5da8943c9b89",
+                "url": "https://api.github.com/repos/johnbillion/wp-crontrol/zipball/935132b5bcee5d70eb65c56104ff09ce36eb45cb",
+                "reference": "935132b5bcee5d70eb65c56104ff09ce36eb45cb",
                 "shasum": ""
             },
             "require": {
@@ -355,13 +355,14 @@
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "johnbillion/plugin-infrastructure": "dev-trunk",
+                "johnbillion/wp-compat": "0.2.3",
                 "lucatume/wp-browser": "3.2.1",
-                "phpcompatibility/phpcompatibility-wp": "2.1.4",
-                "phpstan/phpstan": "^1.7",
+                "phpcompatibility/phpcompatibility-wp": "2.1.5",
+                "phpstan/phpstan": "1.12.2",
                 "roots/wordpress-core-installer": "1.100.0",
                 "roots/wordpress-full": "*",
-                "szepeviktor/phpstan-wordpress": "1.3.4",
-                "wp-coding-standards/wpcs": "2.3.0"
+                "szepeviktor/phpstan-wordpress": "1.3.5",
+                "wp-coding-standards/wpcs": "3.1.0"
             },
             "type": "wordpress-plugin",
             "extra": {
@@ -391,6 +392,7 @@
             "support": {
                 "forum": "https://wordpress.org/support/plugin/wp-crontrol",
                 "issues": "https://github.com/johnbillion/wp-crontrol/issues",
+                "security": "https://patchstack.com/database/vdp/wp-crontrol",
                 "source": "https://github.com/johnbillion/wp-crontrol"
             },
             "funding": [
@@ -399,7 +401,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-15T13:58:33+00:00"
+            "time": "2024-11-22T16:44:19+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",
