@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.4.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.4.1...HEAD)
+
+## [1.4.1](https://github.com/figuren-theater/ft-maintenance/compare/1.4.0...1.4.1) - 2025-12-11
+
+### Dependency Updates & Maintenance
+
+- Bump figuren-theater/code-quality from 1.2.1 to 2.0.0 ([#69](https://github.com/figuren-theater/ft-maintenance/pull/69))
+- Bump johnbillion/query-monitor from 3.16.4 to 3.17.0 ([#68](https://github.com/figuren-theater/ft-maintenance/pull/68))
+- Bump johnbillion/wp-crontrol from 1.17.0 to 1.17.1 ([#67](https://github.com/figuren-theater/ft-maintenance/pull/67))
 
 ## [1.4.0](https://github.com/figuren-theater/ft-maintenance/compare/1.3.1...1.4.0) - 2024-10-25
 
