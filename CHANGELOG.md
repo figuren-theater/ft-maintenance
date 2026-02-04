@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.4.1...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-maintenance/compare/1.5.0...HEAD)
+
+## [1.5.0](https://github.com/figuren-theater/ft-maintenance/compare/1.4.1...1.5.0) - 2026-02-04
+
+- Update deps ([#70](https://github.com/figuren-theater/ft-maintenance/pull/70))
 
 ## [1.4.1](https://github.com/figuren-theater/ft-maintenance/compare/1.4.0...1.4.1) - 2025-12-11
 
