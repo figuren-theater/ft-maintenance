@@ -261,16 +261,16 @@
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.20.2",
+            "version": "3.20.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "40b9ba0d72a4d938a24aa6367b7715e8ae02e8d4"
+                "reference": "19a230464200294ae0448e5d3487be5537de0622"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/40b9ba0d72a4d938a24aa6367b7715e8ae02e8d4",
-                "reference": "40b9ba0d72a4d938a24aa6367b7715e8ae02e8d4",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/19a230464200294ae0448e5d3487be5537de0622",
+                "reference": "19a230464200294ae0448e5d3487be5537de0622",
                 "shasum": ""
             },
             "require": {
@@ -285,7 +285,7 @@
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
                 "guzzlehttp/guzzle": "^7.0",
-                "johnbillion/plugin-infrastructure": "1.2.1",
+                "johnbillion/plugin-infrastructure": "1.2.2",
                 "johnbillion/wp-compat": "0.3.1",
                 "lucatume/wp-browser": "3.2.3",
                 "phpcompatibility/phpcompatibility-wp": "2.1.5",
@@ -333,7 +333,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-11T22:08:53+00:00"
+            "time": "2026-03-19T17:07:45+00:00"
         },
         {
             "name": "johnbillion/wp-crontrol",
@@ -2459,12 +2459,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
